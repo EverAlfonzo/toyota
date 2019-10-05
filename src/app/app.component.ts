@@ -4,6 +4,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { AppModules } from '../providers/globals/globals';
 import { UserService } from '../providers/services/user.service';
+import { Storage } from '@ionic/storage';
 
 @Component({
   templateUrl: 'app.html',
@@ -15,12 +16,14 @@ export class MyApp {
   //rootPage: any = 'HomePage';
   rootPage: any = 'LoginPage';
   pages: Array<string>;
+  user: any;
   public alertShown:boolean = false;
   public animateVarible:boolean=false;
 
   constructor(public platform: Platform, 
               public statusBar: StatusBar,
               public userService: UserService,
+              public storage: Storage,
               public splashScreen: SplashScreen,
               public alertCtrl: AlertController) {
     this.initializeApp();
@@ -32,6 +35,9 @@ export class MyApp {
 
   initializeApp() {  
     
+    this.storage.get('user').then(value =>{
+      this.user = value;
+    });
 
     this.platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
@@ -55,6 +61,7 @@ export class MyApp {
             this.nav.setRoot('LoginPage');
           }
         });
+        
 
       });
 

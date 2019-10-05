@@ -63,6 +63,7 @@ export class UserService {
                 console.log(data);
                 this.storage.set(TOKEN_KEY, data.tokenAuth.token);
                 this.user = this.helper.decodeToken(data.tokenAuth.token);
+                this.storage.set('user', this.user);
                 this.authenticationState.next(true);
                 resolve(true)
 
