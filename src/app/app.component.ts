@@ -3,6 +3,7 @@ import { Nav, Platform, AlertController } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { AppModules } from '../providers/globals/globals';
+import { UserService } from '../providers/services/user.service';
 
 @Component({
   templateUrl: 'app.html',
@@ -19,6 +20,7 @@ export class MyApp {
 
   constructor(public platform: Platform, 
               public statusBar: StatusBar,
+              public userService: UserService,
               public splashScreen: SplashScreen,
               public alertCtrl: AlertController) {
     this.initializeApp();
@@ -44,6 +46,16 @@ export class MyApp {
       this.platform.ready().then(() => {
         this.statusBar.styleDefault();
         this.splashScreen.hide();
+
+        this.userService.authenticationState.subscribe(state => {
+          console.log(state, "stateee")
+          if (state) {
+            this.nav.setRoot('MenuPage');
+          } else {
+            this.nav.setRoot('LoginPage');
+          }
+        });
+
       });
 
       this.platform.registerBackButtonAction(() => {
@@ -56,32 +68,10 @@ export class MyApp {
   }
 
   doLogout() {
-    this.nav.setRoot('LoginPage');
-    // this.doFbLogout();
-    // this.doGoogleLogout();
-    // this.router.navigate(["/login"]);
+    this.userService.logout();
   }
 
-  doFbLogout() {
-    // this.fb.logout()
-    //     .then(res => {
-    //     }, err => {
-    //       console.log(err);
-    //     });
-  }
-
-
-  doGoogleLogout() {
-    // this.googlePlus.logout()
-    //     .then(res => {
-    //       //user logged out so we will remove him from the NativeStorage
-
-    //     }, err => {
-    //       console.log(err);
-    //     })
-  }
-
-
+ 
 
   presentConfirm() {
     let alert = this.alertCtrl.create({

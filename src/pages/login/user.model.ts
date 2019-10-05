@@ -9,7 +9,8 @@ export class User implements Deserializable {
     name: string;
     email: string;
     picture: string;
-    phone: number;
+    phone: string;
+    password: string;
     addresses: Address[];
 
     constructor(){

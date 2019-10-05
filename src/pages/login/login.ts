@@ -2,8 +2,8 @@ import { Component } from '@angular/core';
 import { Storage } from '@ionic/storage';
 import {User} from "../login/user.model";
 import { IonicPage, NavController, NavParams, ToastController, LoadingController, Platform, AlertController, Nav } from 'ionic-angular';
-import {Address} from "../login/address.model";
 import { NgForm } from '@angular/forms';
+import { UserService } from '../../providers/services/user.service';
 
 @IonicPage()
 @Component({
@@ -17,11 +17,27 @@ export class LoginPage {
     constructor(private storage: Storage,
         public loadingController: LoadingController,
         public navCtrl: NavController,
+        private toastCtrl: ToastController,
         private platform: Platform,
+        private userService: UserService,
         public alertController: AlertController
     ) { }
 
    
+    presentToast(message) {
+        let toast = this.toastCtrl.create({
+          message: message,
+          duration: 3000,
+          position: 'bottom'
+        });
+      
+        toast.onDidDismiss(() => {
+          console.log('Dismissed toast');
+        });
+      
+        toast.present();
+      }
+
 
     async doLogin(form: NgForm){
         console.log('login');
@@ -33,9 +49,20 @@ export class LoginPage {
         });
         this.presentLoading(loading);
         console.log("login: ", this.user);
-        loading.dismiss();
+   
+        this.userService.login(this.user.email, this.user.password).then(data =>{
+            console.log(data)
+            loading.dismiss();
+            this.navCtrl.setRoot('MenuPage');
+        }).catch(errors =>{
+            errors.forEach(e => {
+                this.presentToast(e.message);
+            });  
+            loading.dismiss();
+            console.log(errors)
+        });
 
-        this.navCtrl.setRoot('MenuPage');
+       // this.navCtrl.setRoot('MenuPage');
         //this.goToUserPage();
     }
 
@@ -49,14 +76,23 @@ export class LoginPage {
 
 
     async doSignup(){
-
+        console.log("que concha pasa aca")
         const loading = await this.loadingController.create({
             content: 'Please wait...'
         });
         this.presentLoading(loading);
-        // this.goToUserPage();
-        loading.dismiss();
-        this.navCtrl.setRoot('MenuPage');
+        this.userService.signUp(this.user.email, this.user.password, 
+            this.user.name, this.user.phone ).then(data =>{
+            console.log(data)
+            loading.dismiss();
+            this.navCtrl.setRoot('MenuPage');
+        }).catch(errors =>{
+            errors.forEach(e => {
+                this.presentToast(e.message);
+            });  
+            loading.dismiss();
+            console.log(errors)
+        });
 
     }
 

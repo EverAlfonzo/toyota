@@ -21,8 +21,19 @@ import { InAppBrowser } from '@ionic-native/in-app-browser';
 
 import * as ionicGalleryModal from 'ionic-gallery-modal';
 import { HAMMER_GESTURE_CONFIG } from '@angular/platform-browser';
-import { IonicStorageModule } from '@ionic/storage';
+import { IonicStorageModule,Storage } from '@ionic/storage';
+import { UserService } from '../providers/services/user.service';
+import { JwtModule, JWT_OPTIONS } from '@auth0/angular-jwt';
+ 
 
+export function jwtOptionsFactory(storage) {
+  return {
+    tokenGetter: () => {
+      return storage.get('access_token');
+    },
+    whitelistedDomains: ['localhost:5000']
+  }
+}
 
 /* config IOS 
 var config = {
@@ -57,6 +68,13 @@ var config = {
     Ionic2RatingModule, // Put ionic2-rating module here
     GraphQLModule,
     IonicStorageModule.forRoot(),
+    JwtModule.forRoot({
+      jwtOptionsProvider: {
+        provide: JWT_OPTIONS,
+        useFactory: jwtOptionsFactory,
+        deps: [Storage],
+      }
+    }),
     ionicGalleryModal.GalleryModalModule
   ],
   bootstrap: [IonicApp],
@@ -64,7 +82,7 @@ var config = {
     MyApp,
   ],
   providers: [
-    
+    UserService,
     Geolocation,
     StatusBar,    
     SplashScreen,Camera,
