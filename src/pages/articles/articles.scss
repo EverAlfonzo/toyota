@@ -1,0 +1,17 @@
+page-articles {
+    .article{
+        background-color: color($colors,light);
+        img{
+            width:100%;
+        }
+        .article_img{
+            position:relative;
+            .icon{
+                background-color: color($colors,color2);
+                @include position($content-padding,$content-padding ,auto ,auto );
+                @include borderRadius(36px);
+                font-size:2.2rem;
+            }
+        }
+    }
+}

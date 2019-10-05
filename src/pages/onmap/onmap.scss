@@ -1,0 +1,26 @@
+page-onmap {
+    .map{
+        height:calc(100% - 2*(#{$appForm_Item_Height} + #{$content-padding}));
+        border-radius:$control-radius;
+        overflow:hidden;
+    }
+    ion-item [disabled] {
+        background-color: #9e9999;
+    }
+    .right{
+        float:right;
+        right:0px;
+        position: fixed;
+    }
+    .card-md{
+        margin:0px !important;
+        width: 100% !important;
+
+    }
+    .card-content-md {
+        padding: 0px !important;
+        font-size: 1.4rem;
+        line-height: 1.5;
+    }
+
+}

@@ -1,0 +1,64 @@
+<ion-header>
+  <ion-navbar hideBackButton>
+    <button ion-button menuToggle icon-only>
+      <ion-icon class="my-menu"></ion-icon>
+    </button>
+    <ion-title>Menú</ion-title>
+
+  </ion-navbar>
+</ion-header>
+<ion-content padding>
+  <ion-card>
+
+    <ion-card-header padding-top>
+      <ion-thumbnail padding-top>
+        <img src="assets/imgs/logo.png">
+      </ion-thumbnail>
+     
+    </ion-card-header>
+
+    <ion-card-content style="background: #ececec !important;" >
+            
+      <ion-list>
+        <!-- <ion-item item-left menuClose  (click)="openPage('menu') ">
+          <p class="side-title" style="margin-left: 15px !important" item-left>
+            <ion-icon name="home"></ion-icon> Inicio
+          </p>
+        </ion-item> -->
+
+        <ion-item style="background: #ececec !important;" item-left menuClose padding  (click)="openPage('talleres') ">
+          <p class="side-title" style="margin-left: 15px !important" item-left>
+            <ion-icon name="build"></ion-icon> TALLERES
+          </p>
+        </ion-item>
+
+
+        <ion-item style="background: #ececec !important;"  item-left menuClose padding (click)="openPage('articles') ">
+          <p class="side-title" style="margin-left: 15px !important" item-left>
+            <ion-icon name="paper"></ion-icon>  BLOG
+          </p>
+        </ion-item>
+        
+
+
+        <ion-item style="background: #ececec !important;"  item-left menuClose padding (click)="openPage('contact') ">
+          <p class="side-title" style="margin-left: 15px !important" item-left>
+            <ion-icon name="mail"></ion-icon> CONTACTO
+          </p>
+        </ion-item>
+
+        <ion-item style="background: #ececec !important;"  item-left menuClose padding (click)="openPage('home') ">
+          <p class="side-title" style="margin-left: 15px !important" item-left>
+            <ion-icon name="home"></ion-icon> NOSOTROS
+          </p>
+        </ion-item>
+
+
+      </ion-list>
+    </ion-card-content>
+
+  </ion-card>
+
+
+
+</ion-content>

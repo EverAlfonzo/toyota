@@ -1,0 +1,43 @@
+
+<ion-header>
+        <ion-navbar >
+            <button ion-button menuToggle icon-only>
+              </button>
+      
+          <ion-title>Como llegar</ion-title>
+        </ion-navbar>
+      </ion-header>
+      <ion-content >
+      
+        <!-- map -->
+        <div   class="map" #map id="map" [ngClass]="{'addSearch':show_search==true}">  </div>
+    
+        <ion-card>
+          <ion-card-content>
+       
+          <ion-grid>
+          <ion-row>
+              <ion-col col-2>
+                  <ion-item ></ion-item>
+              </ion-col>
+            <ion-col col-8>
+
+              <ion-item padding center>
+                  <button round size="small" *ngIf="currentPosition"  ion-button small  shape="round"
+                  block (click)="calculateAndDisplayRoute()" >
+                   Como llegar
+                 </button>
+
+              </ion-item>
+            </ion-col>
+            <ion-col col-2>
+                <ion-item ></ion-item>
+              </ion-col>
+          </ion-row>
+        </ion-grid>
+     
+      </ion-card-content>
+    </ion-card>
+
+      </ion-content>
+      

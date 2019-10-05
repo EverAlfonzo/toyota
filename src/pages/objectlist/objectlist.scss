@@ -1,0 +1,31 @@
+page-objectlist {
+    button [disabled] {
+        background-color: #9e9999;
+    }
+    .right{
+        float:right;
+        right:0px;
+        position: fixed;
+    } 
+
+    .item-form{
+        min-height: 30px !important;
+    }
+
+    .my-card{
+        margin-bottom: 0px;
+    }
+
+    .select-text{
+        font-size: 1.4rem !important;
+    }
+    .list_items .item .label span {
+        font-size: 1.3rem;
+    }
+   
+    p, .select-popover .popover-content .list .item .label {
+        font-size: 1.4rem !important;
+    }
+
+}
+

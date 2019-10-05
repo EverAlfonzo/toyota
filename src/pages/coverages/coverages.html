@@ -1,0 +1,36 @@
+
+<ion-header>
+    <ion-navbar>
+    <button ion-button menuToggle icon-only>
+            <!-- <ion-icon class="my-menu"></ion-icon> -->
+            </button>
+      <ion-title>{{title}}</ion-title>
+    </ion-navbar>
+  </ion-header>
+  <ion-content padding class="">
+    <ion-card *ngFor="let item of item_list" >
+    <ion-card-content>
+      <ion-item text-center >
+        <ion-thumbnail item-start class="coverages">
+          <img class="item_img" [src]="getURL(item.image)">
+        </ion-thumbnail>
+        <p class="item-name"> {{item.name}}</p>
+        <p> 
+          <ion-row>
+          <ion-col col-3>
+              <button round ion-button (tap)="showPdf(item.pdf,item.name)"  >Ver</button>
+          </ion-col>
+          <ion-col col-9>
+
+              <a [href]="getURL(item.pdf)">
+                  <button round ion-button >Descargar</button>
+              </a>
+          </ion-col>
+        
+          </ion-row>
+          </p>
+      </ion-item>
+    </ion-card-content>
+    </ion-card>
+   
+  </ion-content>

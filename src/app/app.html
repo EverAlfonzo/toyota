@@ -1,0 +1,66 @@
+<ion-menu [content]="content" class="my-menu" swipeEnabled="true" type="overlay" >
+  <ion-header > 
+   <ion-item class="menu-item">
+
+      <ion-thumbnail>
+          <img src="assets/imgs/logo.png">
+      </ion-thumbnail>
+   </ion-item>
+     
+      
+  
+  </ion-header>
+
+  <ion-content>
+    <ion-list>
+        <!-- <ion-item item-left menuClose 
+        (click)="openPage('home');toggleGroup(i)"
+        [ngClass]="{'active':isGroupShown(i)}">
+        <p class="side-title" style="margin-left: 15px !important"  item-left>
+          <ion-icon name="search"></ion-icon> Inicio</p>
+        </ion-item> -->
+
+        <ion-item item-left menuClose 
+        (click)="openPage('talleres');toggleGroup(i)"
+        [ngClass]="{'active':isGroupShown(i)}">
+        <p class="side-title" style="margin-left: 15px !important"  item-left>
+          <ion-icon name="build"></ion-icon> TALLERES</p>
+        </ion-item>
+
+
+
+
+
+    <ion-item item-left menuClose 
+      (click)="openPage('articles');toggleGroup(i)"
+      [ngClass]="{'active':isGroupShown(i)}">
+      <p class="side-title" style="margin-left: 15px !important"  item-left>
+        <ion-icon name="paper"></ion-icon> BLOG</p>
+    </ion-item>
+
+    <ion-item item-left menuClose 
+      (click)="openPage('contact');toggleGroup(i)"
+      [ngClass]="{'active':isGroupShown(i)}">
+      <p class="side-title" style="margin-left: 15px !important"  item-left>
+        <ion-icon name="mail"></ion-icon> CONTACTO</p>
+    </ion-item>
+
+    <ion-item item-left menuClose 
+    (click)="openPage('home');toggleGroup(i)"
+    [ngClass]="{'active':isGroupShown(i)}">
+    <p class="side-title" style="margin-left: 15px !important"  item-left>
+      <ion-icon name="home"></ion-icon> Nosotros</p>
+  </ion-item>
+
+
+
+
+
+
+    </ion-list>
+  </ion-content>
+
+</ion-menu>
+
+<!-- Disable swipe-to-go-back because it's poor UX to combine STGB with side menus -->
+<ion-nav [root]="rootPage" #content swipeBackEnabled="false" [class.animateApp]="animateVarible==true"></ion-nav>

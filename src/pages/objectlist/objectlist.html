@@ -1,0 +1,84 @@
+<ion-header>
+
+  <ion-navbar>
+    <button ion-button menuToggle icon-only>
+      <!-- <ion-icon class="my-menu"></ion-icon> -->
+    </button>
+    <ion-title color="light">{{title}}</ion-title>
+   
+  </ion-navbar>
+</ion-header>
+<ion-content>
+
+  <!--FILTER FORM -->
+  <div class="appForm" *ngIf="showFilterForm">
+
+    <ion-card class="my-card">
+      <ion-card-content>
+          <ion-item class="item-form">
+            <ion-select interface="popover"
+             (ionChange)="onchangeDepartment($event)"
+              [placeholder]="departmentPlaceholder">
+              <ion-option value="{{item.id}}" [selected]="selected_department == item.id"
+                *ngFor="let item of departments">{{item.name}}</ion-option>
+            </ion-select>
+          </ion-item>
+          <ion-item class="item-form">
+            <ion-label></ion-label>
+            <ion-select interface="popover" (ionChange)="onchangeCity($event)" placeholder="Seleccione Ciudad.."
+              [(ngModel)]="city_select">
+              <ion-option value="0" [selected]="selected_city == 0"> Seleccione Ciudad..</ion-option>
+              <ion-option value="{{item.id}}" [selected]="selected_city == item.id" *ngFor="let item of cities">
+                {{item.name}} </ion-option>
+            </ion-select>
+          </ion-item>
+
+          <ion-row>
+              <ion-col col-2>
+              </ion-col>
+            <ion-col col-8>
+
+              <ion-item class="item-form" center>
+                  <button class="search-btn" round ion-button
+                  (click)="search()">
+                  Buscar
+                </button>
+              </ion-item>
+            </ion-col>
+            <ion-col col-2>
+              </ion-col>
+          </ion-row>
+      </ion-card-content>
+    </ion-card>
+  </div>
+
+  <!-- List of items -->
+  <ion-list class="list_items">
+    <ion-item *ngFor="let item of item_list" [navParams]="{item:item}" navPush="DetailsPage">
+      <ion-avatar item-left>
+        <img [src]="getImgContent(item.image)">
+
+      </ion-avatar>
+      <p ion-text color="color2">{{item.name}}</p>
+      <span ion-text color="dark" *ngIf="item.description">{{item.description}}</span>
+      <span ion-text class="has_icon" color="dark" *ngIf="item.phone">
+        <ion-icon name="ios-call" color="color2"></ion-icon>
+        {{item.phone}}
+      </span>
+      <!-- <span ion-text class="has_icon" color="dark">
+        <ion-icon name="ios-home" color="color2"></ion-icon>
+        {{item.address}}
+      </span> -->
+
+      <span ion-text class="has_icon" color="dark">
+        <ion-icon ios="ios-map" md="md-map" name="map" color="color2"></ion-icon>
+        {{item.city.department.name}}, {{item.city.name}}
+      </span>
+      <div item-right *ngIf="item.distance"><span>{{item.distance}}</span> Km</div>
+    </ion-item>
+  </ion-list>
+
+
+
+
+</ion-content>

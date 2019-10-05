@@ -1,0 +1,74 @@
+page-coverages {
+
+    .button-md{
+        height: 2.3rem !important;
+        font-size: 1.4rem;
+    }
+    .button-round-md {
+        border-radius: 64px;
+        padding: 0 1.6rem !important;
+    }
+    
+    .item-button{
+        padding: 0 2.6rem !important;
+    }
+    .card-content-md {
+        padding: 5px 0px !important;
+        width: 100%;
+    }
+    .card-md{
+        margin: 10px 0px !important;
+        width: 100% !important;
+    }
+    .coverages{
+        background-color: color($colors,light);
+        img{
+            width:150px;
+            height: 80px;
+        }
+        .item_img{
+            position:relative;
+            .icon{
+                background-color: color($colors,color2);
+                @include position($content-padding,$content-padding ,auto ,auto );
+                @include borderRadius(36px);
+                font-size:2.2rem;
+            }
+        }
+    }
+    .item-name{
+        font-size: 18px;
+        font-weight: 500;
+        color:color($colors,darkest);
+        padding: 10px 0px;
+        white-space: normal;
+    }
+    .button-inner{
+        font-size: 1rem !important;
+    }
+
+     .images{
+        position: relative;
+        .grid{
+            padding:0px 3*$content-padding/4;
+            .row{
+                margin-bottom:$content-padding/2;
+                &:last-of-type{
+                    margin-bottom:0px;
+                }
+            }
+            .col{
+                padding:0px $content-padding/4;
+                .img_cover{
+                    border-radius:$control-radius;
+                    overflow:hidden;
+                }
+                img{
+                    display:block;
+                    border-radius:$control-radius;
+                    width:100%;
+                }
+            }
+        }
+    }
+}

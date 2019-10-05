@@ -1,0 +1,42 @@
+page-article-details {
+    ion-card-title{
+        font-size: 1.6rem !important;
+    }
+    .fixed-content{
+        height:50px;
+        background-color:color($colors,color1);
+    }
+    .scroll-content{
+        padding-bottom:0px!important;
+    }
+    .article{
+        .card-content{
+            p{
+                display:block;
+                -webkit-line-clamp: initial;
+                -webkit-box-orient: initial;   
+            }
+        }
+    }
+    .article{
+        background-color: color($colors,light);
+        img{
+            width:100%;
+        }
+        .article_img{
+            position:relative;
+            .icon{
+                background-color: color($colors,color2);
+                @include position($content-padding,$content-padding ,auto ,auto );
+                @include borderRadius(36px);
+                font-size:2.2rem;
+            }
+        }
+    }
+    p, .list .item .label {
+        font-size: 1.4rem !important;
+        text-justify: inter-word;
+
+    }
+
+}

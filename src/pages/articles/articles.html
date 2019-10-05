@@ -1,0 +1,38 @@
+
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle icon-only>
+      <!-- <ion-icon class="my-menu"></ion-icon> -->
+    </button>
+    <ion-title>Artículos</ion-title>
+   
+  </ion-navbar>
+</ion-header>
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col col-12 col-md-6 col-lg-4 col-xl-3 *ngFor="let item of articles">
+        <ion-card class="article">
+            <div class="article_img" > 
+                <img [src]="getImgContent(item.image)">
+                 <!--
+                <ion-icon name="md-share" color="light" (click)="social_media($event)"></ion-icon>
+                 -->
+              </div>
+          <ion-card-content>
+            <ion-card-title>
+              {{item.title}}
+            </ion-card-title>
+            <p>
+                {{item.content}}
+            </p>
+            <button navPush="ArticleDetailsPage"  [navParams]="{item:item}"
+            ion-button clear margin-top color="color2" float-right>
+              Ver mas
+            </button>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

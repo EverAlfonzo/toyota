@@ -1,0 +1,119 @@
+<ion-header>
+  <ion-navbar hideBackButton>
+    <button ion-button menuToggle icon-only>
+      <!-- <ion-icon class="my-menu"></ion-icon> -->
+    </button>
+    <ion-title>Nosotros</ion-title>
+
+  </ion-navbar>
+</ion-header>
+<ion-content padding>
+
+  <div>
+    <ion-card class="article">
+      <div class="images">
+        <ion-grid>
+          <ion-row>
+            <ion-col class="main-col" col-12>
+              <div class="img_main">
+                <img *ngIf="item.image" [src]="getURL(item.image)" (tap)="openPhotos()">
+              </div>
+            </ion-col>
+            <!-- next images must be equaled in width and height -->
+          </ion-row>
+          <ion-row *ngIf="item.imagesQty==1">
+            <ion-col class="nomain-col" col-12 *ngFor="let image of item.images">
+              <div class="img_cover">
+                <img [src]="getURL(image)">
+              </div>
+            </ion-col>
+          </ion-row>
+          <ion-row *ngIf="item.imagesQty==2">
+            <ion-col class="nomain-col" col-6 *ngFor="let image of item.images">
+              <div class="img_cover">
+                <img [src]="getURL(image)">
+              </div>
+            </ion-col>
+          </ion-row>
+          <ion-row *ngIf="item.imagesQty==3">
+            <ion-col class="nomain-col" col-4 *ngFor="let image of item.images;">
+              <div class="">
+                <img [src]="getURL(image)">
+              </div>
+            </ion-col>
+          </ion-row>
+          <ion-row >
+            <ion-col class="nomain-col"  *ngFor="let image of item.images">
+              <div class="img_cover">
+                <img [src]="getURL(image)">
+              </div>
+            </ion-col>
+          </ion-row>
+
+        </ion-grid>
+      </div>
+      
+      
+      <ion-grid padding-top>
+        <ion-row text-center>
+            <ion-col col-12>
+            <!-- <h4  class="especializaciones" ion-text color="darkest"></h4> -->
+          </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col col-6 *ngIf="item.phone">
+              <p ion-text color="dark" class="my-text">
+                <a class="phone-link my-text" href="tel:{{item.phone}}">
+                  <ion-icon name="ios-call" item-left color="color2"></ion-icon>
+                  {{item.phone}}
+                </a>
+              </p>
+            </ion-col>
+            <ion-col col-6 *ngIf="item.address">
+              <p ion-text color="dark" class="my-text">
+                <ion-icon name="ios-home" item-left color="color2"></ion-icon> {{item.address}}
+              </p>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col col-12 *ngIf="item.location" text-center>
+              <p ion-text color="color2" class="my-text" [navParams]="{item:item}" navPush="OnmapPage">
+                <ion-icon name="ios-pin" item-left color="color2"></ion-icon> VER EN MAPA
+              </p>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+
+
+
+
+      <div class="company">
+        <!-- <img src="assets/imgs/logo.png" (tap)="openPhotos()"> -->
+        <p class="description"> {{item.largeDescription}}</p>
+      </div>
+
+      
+    </ion-card>
+  </div>
+
+  <!-- 
+  <div text-center *ngIf="articles">
+    <p class="bolder size-24" ion-text color="dark">CONSEJOS RECIENTES</p>
+  </div> -->
+
+  <!-- New Articles -->
+  <!-- <div *ngFor="let article  of articles">
+    <h4></h4>
+    <ion-card class="article">
+      <div class="article_img">
+        <img [src]="getImgContent(article.image)"> -->
+  <!--  <ion-icon name="md-share" color="light" (click)="social_media($event)"></ion-icon> -->
+  <!-- </div>
+
+      <ion-card-content>
+        <ion-card-title>{{article.title}}</ion-card-title>
+        <p class="description">{{article.content}} </p>
+      </ion-card-content>
+    </ion-card>
+  </div> -->
+</ion-content>

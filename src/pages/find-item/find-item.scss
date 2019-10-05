@@ -1,0 +1,41 @@
+page-find-item {
+    .map{
+        height:calc(100% - 2*(#{$appForm_Item_Height} + #{$content-padding}));
+        border-radius:$control-radius;
+        overflow:hidden;
+    }
+    ion-item [disabled] {
+        background-color: #9e9999;
+    }
+    .right{
+        float:right;
+        right:0px;
+        position: fixed;
+    }
+    .hide{
+        display: none;
+    }
+    
+    .show{
+        display: block;
+    }
+
+    ion-card-content {
+        display: block;
+        padding: 0px !important;
+    }
+
+    .item-form{
+        height: 30px !important;
+    }
+    
+    .my-card{
+        margin-bottom: 0px;
+    }
+
+    .select-text, .label{
+        font-size: 1.3rem !important;
+    }
+   
+}
+

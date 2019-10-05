@@ -1,0 +1,51 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle icon-only>
+      <!-- <ion-icon class="my-menu"></ion-icon> -->
+    </button>
+    <ion-title>Contacto</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content>
+  <ion-card class="my-card">
+    <ion-card-content>
+      <ion-grid text-center>
+        <ion-row>
+          <ion-col col-12>
+            <h1 ion-text color="dark">En breve nos pondremos en contacto con usted</h1>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+
+      <div padding-top>
+        <form (ngSubmit)="send()" [formGroup]="myForm">
+          <ion-item>
+            <ion-input [(ngModel)]="contact.email" placeholder="Email" [formControl]="myForm.controls['email']"
+              name="email"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-textarea [(ngModel)]="contact.message" required name="message"
+              [formControl]="myForm.controls['message']" rows="6" placeholder="Mensaje"></ion-textarea>
+          </ion-item>
+
+
+          <ion-row>
+            <ion-col col-2>
+            </ion-col>
+            <ion-col col-8>
+
+              <ion-item padding text-center>
+                <button round ion-button [disabled]="!myForm.valid" block (click)="send()">
+                  Enviar
+                </button>
+
+              </ion-item>
+            </ion-col>
+            <ion-col col-2>
+            </ion-col>
+          </ion-row>
+        </form>
+      </div>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

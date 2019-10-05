@@ -1,0 +1,109 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle icon-only>
+      <ion-icon class="my-menu"></ion-icon>
+    </button>
+
+    <ion-title>Buscar</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content>
+
+  <!--FILTER FORM -->
+  <div class="appForm" *ngIf="showFilterForm">
+    <ion-card class="my-card">
+      <ion-card-content>
+        <ion-grid>
+          <ion-row>
+            <ion-col>
+              <ion-item class="item-form">
+                <ion-select interface="popover" (ionChange)="onchangeDepartment($event)"
+                  placeholder="Seleccione Departamento..">
+                  <ion-option value="{{item.id}}" [selected]="selected_department == item.id"
+                    *ngFor="let item of departments">{{item.name}}</ion-option>
+                </ion-select>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              <ion-item class="item-form">
+                <ion-select interface="popover" (ionChange)="onchangeCity($event)" placeholder="Seleccione Ciudad.."
+                  [(ngModel)]="city_select">
+                  <ion-option value="" [selected]="selected_city == ''"> Seleccione Ciudad..</ion-option>
+                  <ion-option value="{{item.id}}" [selected]="selected_city == item.id" *ngFor="let item of cities">
+                    {{item.name}} </ion-option>
+                </ion-select>
+              </ion-item>
+
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              <ion-item class="item-form">
+                <ion-select interface="popover" (ionChange)="onchangeItem($event)" placeholder="¿Qué desea buscar?"
+                  [(ngModel)]="item_select">
+                  <ion-option value="{{item.code}}" *ngFor="let item of modules_list">{{item.title}} </ion-option>
+                </ion-select>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col >
+              <ion-item padding class="item-form">
+                <ion-label>Ver en Mapa</ion-label>
+                <ion-checkbox (ionChange)="onchangeCheckbox($event)" [checked]="seeOnMap" slot="start"></ion-checkbox>
+              </ion-item>
+            </ion-col>
+            
+          </ion-row>
+
+          <ion-row>
+              <ion-col col-2>
+              </ion-col>
+            <ion-col col-8>
+
+              <ion-item padding center>
+                <button size="small" round [disabled]="enableSearchButton" ion-button small block (click)="search()">
+                  Buscar
+                </button>
+
+              </ion-item>
+            </ion-col>
+            <ion-col col-2>
+              </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-card-content>
+    </ion-card>
+  </div>
+
+  <!-- List of items -->
+  <ion-list class="list_items" *ngIf="item_list.length > 0 && !seeOnMap">
+    <ion-item *ngFor="let item of item_list" [navParams]="{item:item}" navPush="DetailsPage">
+      <ion-avatar item-left>
+        <img [src]="getImgContent(item.image)">
+
+      </ion-avatar>
+      <p ion-text color="color2">{{item.name}}</p>
+      <span ion-text color="dark" *ngIf="item.description">{{item.description}}</span>
+      <span ion-text class="has_icon" color="dark" *ngIf="item.phone">
+        <ion-icon name="ios-call" color="color2"></ion-icon>
+        {{item.phone}}
+      </span>
+      <span ion-text class="has_icon" color="dark">
+        <ion-icon name="ios-home" color="color2"></ion-icon>
+        {{item.address}}
+      </span>
+
+      <span ion-text class="has_icon" color="dark">
+        <ion-icon ios="ios-map" md="md-map" name="map" color="color2"></ion-icon>
+        {{item.city.department.name}}, {{item.city.name}}
+      </span>
+      <div item-right *ngIf="item.distance"><span>{{item.distance}}</span> Km</div>
+    </ion-item>
+  </ion-list>
+
+  <!-- map -->
+  <div class="map" #map id="map" [ngClass]="{'addSearch':show_search==true,'hide':!seeOnMap,'show':seeOnMap}"> </div>
+</ion-content>

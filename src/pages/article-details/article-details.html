@@ -1,0 +1,29 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Consejo del Día</ion-title>
+   
+  </ion-navbar>
+</ion-header>
+<ion-content>
+  
+  
+  <div padding-horizontal *ngIf="item">
+    <ion-card class="article">
+        <div class="article_img"> 
+            <img [src]="getImgContent(item.image)">
+             <!--
+            <ion-icon name="md-share" color="light" (click)="social_media($event)"></ion-icon>
+             -->
+          </div>
+  
+      <ion-card-content>
+        <ion-card-title>
+            {{item.title}}
+        </ion-card-title>
+        <p>{{item.content}}</p>
+      </ion-card-content>
+    </ion-card>
+  </div>
+
+ 
+</ion-content>

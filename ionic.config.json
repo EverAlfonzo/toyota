@@ -1,7 +1,8 @@
 {
-  "name": "photo-rc1",
+  "name": "sanatorio",
   "integrations": {
     "cordova": {}
   },
-  "type": "angular"
+  "type": "ionic-angular",
+  "id": "d82064ff"
 }

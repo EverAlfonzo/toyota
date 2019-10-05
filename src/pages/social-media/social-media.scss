@@ -1,0 +1,14 @@
+page-social-media {
+    .content{
+        background: color($colors,color1);
+    }
+    .social_media{
+        padding:$content-padding/2;
+        .button{
+            border-radius:50%;
+            height:34px;
+            width:34px; 
+            margin:$content-padding/2;
+        }
+    }
+}

@@ -1,0 +1,42 @@
+@import "../assets/animate/animate.scss";
+.animateApp{
+// ********************** My Classes that extended *************
+    .fadeInUp{
+        @include fadeInUp(
+            $duration:1.5s,
+            $count: 1,
+            $delay: .5s,
+            $function: ease, 
+            $fill: both
+            ); 
+        }
+    .fadeInDown{
+            @include fadeInDown(
+            $duration:1.5s,
+            $count: 1,
+            $delay: .15s,
+            $function: ease, 
+            $fill: both
+            ); 
+        }
+
+        
+// *************************************
+    .content{
+        .scroll-content,.doctor_in_grid,.article,.all_question,.list_doctors{
+            @extend .fadeInUp;
+        }
+        .fixed-content{
+            @extend .fadeInDown;
+        }
+    }
+    .header{
+        .toolbar{
+            @extend .fadeInDown;
+        }
+    }
+    .noItems,.footer{
+        @extend .fadeInUp;
+    } 
+}
+

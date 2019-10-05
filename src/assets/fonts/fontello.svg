@@ -1,0 +1,16 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns="http://www.w3.org/2000/svg">
+<metadata>Copyright (C) 2017 by original authors @ fontello.com</metadata>
+<defs>
+<font id="fontello" horiz-adv-x="1000" >
+<font-face font-family="fontello" font-weight="400" font-stretch="normal" units-per-em="1000" ascent="850" descent="-150" />
+<missing-glyph horiz-adv-x="1000" />
+<glyph glyph-name="menu" unicode="&#xe800;" d="M0 746l0-103 652 0 652 0-6 99-5 99-647 4-646 6 0-105z m0-396l0-104 387 0 387 0 0 104 0 104-387 0-387 0 0-104z m0-396l0-104 519 0 519 0 0 104 0 104-519 0-519 0 0-104z" horiz-adv-x="1302" />
+
+<glyph glyph-name="grid" unicode="&#xe802;" d="M170 650q80 0 80-80l0-90q0-80-80-80l-90 0q-80 0-80 80l0 90q0 80 80 80l90 0z m350 0q80 0 80-80l0-90q0-80-80-80l-90 0q-80 0-80 80l0 90q0 80 80 80l90 0z m-350-350q80 0 80-80l0-90q0-80-80-80l-90 0q-80 0-80 80l0 90q0 80 80 80l90 0z m350 0q80 0 80-80l0-90q0-80-80-80l-90 0q-80 0-80 80l0 90q0 80 80 80l90 0z" horiz-adv-x="600" />
+
+<glyph glyph-name="list" unicode="&#xe803;" d="M650 400q22 0 36-15t14-35-15-35-35-15l-600 0q-20 0-35 15t-15 35 14 35 36 15l600 0z m-600 100q-20 0-35 15t-15 35 14 35 36 15l600 0q22 0 36-15t14-35-15-35-35-15l-600 0z m600-300q22 0 36-15t14-35-15-35-35-15l-600 0q-20 0-35 15t-15 35 14 35 36 15l600 0z" horiz-adv-x="700" />
+</font>
+</defs>
+</svg>

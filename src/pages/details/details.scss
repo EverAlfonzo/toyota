@@ -1,0 +1,79 @@
+page-details{
+    .images{
+        position: relative;
+        .grid{
+            padding:0px 3*$content-padding/4;
+            .row{
+                margin-bottom:$content-padding/2;
+                &:last-of-type{
+                    margin-bottom:0px;
+                }
+            }
+            .col{
+                padding:0px $content-padding/4;
+                .img_cover{
+                    border-radius:$control-radius;
+                    overflow:hidden;
+                    //height: 140px !important;
+                   // width: 200px !important;
+                   // width: 100px;
+                   // height: 100px;
+                    background-position: center center;
+                    background-repeat: no-repeat;
+                }
+                .img_main{
+                    img{
+                       // display:block;
+                       overflow:hidden;
+                        border-radius:$control-radius;
+                        width:100%;
+                        height: 100%;
+                        margin-top: 20px;
+                        background-position: center center;
+                        background-repeat: no-repeat;
+                        min-height: 100%;
+                        min-width: 100%;
+                       
+                    }
+                }
+               
+            }
+        }
+    }
+    .main-col{
+        max-height: 250px !important;
+    }
+    .nomain-col{
+        max-height: 100px !important;
+    }
+    h4{
+        font-size: 1.4rem !important;
+    }
+    p{
+        font-size: 1.3rem !important;
+    }
+    .card .card-content {
+        padding: 0px;
+        font-size: 1.3rem !important;
+        line-height: 18px;
+    }
+    .description {
+        padding: 10px;
+        padding-top: 10px;
+        padding-right: 10px;
+        padding-bottom: 10px;
+        padding-left: 10px;
+        text-align: justify;
+        font-size: 14px !important;
+        text-indent: 20px;
+    }
+    .label{
+        font-size: 14px !important;
+    }
+
+    .phone-link{
+        text-decoration: none;
+        color: #3e3d3d;
+        font-size: 14px !important;
+    }
+}

@@ -1,77 +1,174 @@
 // Ionic Variables and Theming. For more info, please see:
 // http://ionicframework.com/docs/theming/
 
-/** Ionic CSS Variables **/
-:root {
-  /** primary **/
-  --ion-color-primary: #3880ff;
-  --ion-color-primary-rgb: 56, 128, 255;
-  --ion-color-primary-contrast: #ffffff;
-  --ion-color-primary-contrast-rgb: 255, 255, 255;
-  --ion-color-primary-shade: #3171e0;
-  --ion-color-primary-tint: #4c8dff;
+// Font path is used to include ionicons,
+// roboto, and noto sans fonts
+$font-path: "../assets/fonts";
 
-  /** secondary **/
-  --ion-color-secondary: #0cd1e8;
-  --ion-color-secondary-rgb: 12, 209, 232;
-  --ion-color-secondary-contrast: #ffffff;
-  --ion-color-secondary-contrast-rgb: 255, 255, 255;
-  --ion-color-secondary-shade: #0bb8cc;
-  --ion-color-secondary-tint: #24d6ea;
 
-  /** tertiary **/
-  --ion-color-tertiary: #7044ff;
-  --ion-color-tertiary-rgb: 112, 68, 255;
-  --ion-color-tertiary-contrast: #ffffff;
-  --ion-color-tertiary-contrast-rgb: 255, 255, 255;
-  --ion-color-tertiary-shade: #633ce0;
-  --ion-color-tertiary-tint: #7e57ff;
+// The app direction is used to include
+// rtl styles in your app. For more info, please see:
+// http://ionicframework.com/docs/theming/rtl-support/
+$app-direction: ltr;
 
-  /** success **/
-  --ion-color-success: #10dc60;
-  --ion-color-success-rgb: 16, 220, 96;
-  --ion-color-success-contrast: #ffffff;
-  --ion-color-success-contrast-rgb: 255, 255, 255;
-  --ion-color-success-shade: #0ec254;
-  --ion-color-success-tint: #28e070;
 
-  /** warning **/
-  --ion-color-warning: #ffce00;
-  --ion-color-warning-rgb: 255, 206, 0;
-  --ion-color-warning-contrast: #ffffff;
-  --ion-color-warning-contrast-rgb: 255, 255, 255;
-  --ion-color-warning-shade: #e0b500;
-  --ion-color-warning-tint: #ffd31a;
+@import "ionic.globals";
 
-  /** danger **/
-  --ion-color-danger: #f04141;
-  --ion-color-danger-rgb: 245, 61, 61;
-  --ion-color-danger-contrast: #ffffff;
-  --ion-color-danger-contrast-rgb: 255, 255, 255;
-  --ion-color-danger-shade: #d33939;
-  --ion-color-danger-tint: #f25454;
 
-  /** dark **/
-  --ion-color-dark: #222428;
-  --ion-color-dark-rgb: 34, 34, 34;
-  --ion-color-dark-contrast: #ffffff;
-  --ion-color-dark-contrast-rgb: 255, 255, 255;
-  --ion-color-dark-shade: #1e2023;
-  --ion-color-dark-tint: #383a3e;
+// Shared Variables
+// --------------------------------------------------
+// To customize the look and feel of this app, you can override
+// the Sass variables found in Ionic's source scss files.
+// To view all the possible Ionic variables, see:
+// http://ionicframework.com/docs/theming/overriding-ionic-variables/
 
-  /** medium **/
-  --ion-color-medium: #989aa2;
-  --ion-color-medium-rgb: 152, 154, 162;
-  --ion-color-medium-contrast: #ffffff;
-  --ion-color-medium-contrast-rgb: 255, 255, 255;
-  --ion-color-medium-shade: #86888f;
-  --ion-color-medium-tint: #a2a4ab;
 
-  /** light **/
-  --ion-color-light: #f4f5f8;
-  --ion-color-light-rgb: 244, 244, 244;
-  --ion-color-light-contrast: #000000;
-  --ion-color-light-contrast-rgb: 0, 0, 0;
-  --ion-color-light-shade: #d7d8da;
-  --ion-color-light-tint: #f5f6f9;
-}
+
+
+// Named Color Variables
+// --------------------------------------------------
+// Named colors makes it easy to reuse colors on various components.
+// It's highly recommended to change the default colors
+// to match your app's branding. Ionic uses a Sass map of
+// colors so you can add, rename and remove colors as needed.
+// The "primary" color is the only required color in the map.
+
+//color1:     #5b6d48
+
+$colors: (
+ // primary:    #488aff,
+  primary: #cc0000,
+  //primary:    #fff,
+  secondary:  #32db64,
+  danger:     #e56353,
+  light:      #fff,
+  dark:       #3e3d3d,
+  darkest:#2d2c6e,
+  //color1:     #3a5a98,
+color1: #cc0000,
+  color2:     #dc4838,
+  color3:     #e2e1dd, 
+  color4:     #939391,
+  color5:     #ffcb0b,
+  faceColor:  #3a5a98,
+  twitterColor: #89b8e2,
+  googleColor:  #ff5450,
+);
+
+$content-padding:8px;
+$content-margin:$content-padding;
+$control-height:44px;
+$control-radius:3px;
+$left-menu-font-size: 30px;
+$grid-padding-width:$content-padding;
+
+// App  Variables
+$mainFont:1.2rem;  
+ $appFonts:(h3:2.5rem,h4:$mainFont + .1,h5:$mainFont,p:$mainFont - .1);
+ @each $head , $fontSize in $appFonts {
+    #{$head}{
+      font-size:$fontSize!important;
+    } 
+ }
+
+// appForm variables
+$appForm_Item_Height:$control-height;
+$appForm_Item_Text_color:color($colors,dark);
+$appForm_icon_color:color($colors,color1);
+// $appForm_border_color:color($colors,color2);
+$appForm_border_radius:$control_radius;   
+$appForm_text_font_size:$mainFont - .1rem;
+$appForm_text_font_weight:500;
+$text-input-placeholder-color:color($colors,dark);
+$item-ios-padding-top:0px;
+$text-input-ios-margin-right:0px;       
+$item-ios-padding-bottom:0px;
+$text-input-ios-margin-left:0px;
+
+//  select   
+$select-ios-icon-color:color($colors,color2);
+$select-ios-placeholder-color:$text-input-placeholder-color;
+// button variables
+$button-ios-margin-top:$content-padding;
+$button-ios-margin-end:0px;
+$button-ios-margin-bottom:0px;
+$button-ios-margin-start:0px;
+$button-ios-padding-start:$content-padding;
+$button-ios-padding-end:$button-ios-padding-start;
+$button-ios-padding-bottom:0px;
+$button-ios-height:$control-height ;
+$button-ios-border-radius:$control-radius;  
+$button-ios-font-size:$mainFont - .1;
+$button-ios-text-color:color($colors,light);
+
+// header Variables
+$toolbar-ios-height:$control-height;
+$toolbar-ios-title-font-size:$mainFont;
+$toolbar-ios-title-text-align:left;  
+$toolbar-ios-title-font-weight:500;
+$toolbar-ios-title-text-color:color($colors,light);
+
+$toolbar-md-title-text-color:color($colors,light);
+
+$nav_Bar_Padding:$content-padding/2;
+$header_icon_size:2.0rem; 
+$header_icon_color:$toolbar-ios-title-text-color;
+$toolBar_Back_Ground:color($colors,color1);
+$shap_btn_width:28px;
+
+// side menu Variables
+
+$menu-width:80%;
+$menu-small-width:$menu-width;
+$menu_item_height:35px;
+
+// Radio Variables
+$radioSize:24px;
+$radioRadius:50%;
+
+//search bar variables
+$searchbar-ios-input-search-icon-color:color($colors,color1);
+$searchbar-ios-input-search-icon-size:20px;
+$searchbar-ios-input-placeholder-color:color($colors,color1);
+$searchbar-ios-input-text-color:color($colors,color1);
+$searchbar-ios-input-clear-icon-color:color($colors,color2);
+$searchbar-ios-input-clear-icon-size:30px;
+$searchbar-input-background-color:color($colors,light);  
+
+// badges Variables
+$badge-font-size:1rem;
+$badge-font-weight:500;
+// checkbox variables   
+$checkbox-ios-background-color-off:color($colors,color4);
+$checkbox-ios-background-color-on:color($colors,color4);
+$checkbox-ios-icon-size:16px;        
+$checkbox-ios-icon-border-width:0px;
+$checkbox-ios-icon-border-radius:2px;  
+$checkbox-ios-icon-checkmark-width:0px;
+//radio buttons variables
+$radio-ios-color-on:color($colors,color2);
+$radio-ios-icon-width:22px;
+$radio-ios-icon-height:$radio-ios-icon-width;
+// App Theme
+// --------------------------------------------------
+// Ionic apps can have different themes applied, which can
+// then be future customized. This import comes last
+// so that the above variables are used and Ionic's
+// default are overridden.
+
+@import "ionic.theme.default";
+
+
+// Ionicons
+// --------------------------------------------------
+// The premium icon font for Ionic. For more info, please see:
+// http://ionicframework.com/docs/ionicons/
+
+@import "ionic.ionicons";
+
+
+// Fonts
+// --------------------------------------------------
+
+@import "roboto";
+@import "noto-sans";
