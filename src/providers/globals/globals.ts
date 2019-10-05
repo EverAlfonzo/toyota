@@ -57,6 +57,8 @@ export const AppModules =  {
   home: { code:'home',title: ' Nosotros', component: 'HomePage'}, 
   findItem: { code:'finditem',title: 'Buscar', component: 'FindItemPage'},
   menu: { code:'menu',title: 'Menu', component: 'MenuPage'},
+  booking: { code:'booking',title: 'Agendamiento', component: 'BookingPage'},
+  delivery: { code:'delivery',title: 'Toyomovil', component: 'DeliveryPage'}
 }
 
 export const DEFAULT_POSITION = {

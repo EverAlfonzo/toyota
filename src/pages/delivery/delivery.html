@@ -1,0 +1,133 @@
+
+
+<ion-header>
+  <ion-navbar>
+    <button button menuToggle icon-only>
+      <!-- <ion-icon class="my-menu"></ion-icon> -->
+    </button>
+    <ion-title>Toyomóvil</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content>
+    <ion-card *ngIf="!next">
+      <ion-card-title text-center>Seleccione Ubicación</ion-card-title>
+
+        <div class="map-wrapper">
+            <div id="map_center">
+                <img src="../../assets/imgs/marker.png" />
+            </div>
+            <div #map id="map"></div>
+        </div>
+     
+        <ion-row>
+            <ion-col> <button (click)="nextStep()" round  color="danger">
+                <ion-icon  slot="start" name="arrow-forward"></ion-icon>
+                Siguiente
+            </button></ion-col>
+            <ion-col>
+                <button (click)="loadMap()" round  fill="outline">
+                    <ion-icon slot="start" name="locate"></ion-icon>
+                    Centrar
+                </button>
+            </ion-col>
+        </ion-row>
+    </ion-card>
+
+    <div *ngIf="next">
+        <form (ngSubmit)="onSubmit()">
+            <ion-card>
+
+                <ion-card-content>
+                    <ion-row>
+
+                        <ion-col >
+                            <ion-item>
+                                <ion-label  floating>  Nombre</ion-label>
+                                <ion-input type="text"  clearInput
+                                           placeholder="Ej: Casa, Oficina"
+                                           [(ngModel)]="address.name"  name="name"></ion-input>
+                            </ion-item>
+                        </ion-col>
+                    </ion-row>
+
+                    <ion-row>
+
+                        <ion-col >
+                            <ion-item>
+                                <ion-label floating>  Calle 1</ion-label>
+                                <ion-input type="text"  clearInput required="required"
+                                           [(ngModel)]="address.street1"  name="street1"></ion-input>
+                            </ion-item>
+                        </ion-col>
+                    </ion-row>
+
+                    <ion-row>
+                        <ion-col >
+                            <ion-item>
+                                <ion-label floating>  Calle 2</ion-label>
+                                <ion-input type="text"  clearInput required="required"
+                                           [(ngModel)]="address.street2"  name="street2"></ion-input>
+                            </ion-item>
+                        </ion-col>
+                    </ion-row>
+
+                    <ion-row>
+                        <ion-col >
+                            <ion-item>
+                                <ion-label floating>  Número de Casa</ion-label>
+                                <ion-input type="string"  clearInput required="required"
+                                           [(ngModel)]="address.number"  name="number"></ion-input>
+                            </ion-item>
+                        </ion-col>
+                    </ion-row>
+
+                    <ion-row>
+                        <ion-col >
+                            <ion-item>
+                                <ion-label floating>  Referencia</ion-label>
+                                <ion-textarea type="string"  clearInput required="required" placeholder="Ej: Reja color azul, Barrio"
+                                              [(ngModel)]="address.reference"  name="reference"></ion-textarea>
+                            </ion-item>
+                        </ion-col>
+                    </ion-row>
+
+              
+
+                   
+
+
+
+
+            <ion-grid>
+                <ion-row>
+                    <ion-col>
+                        <button (click)="previousStep()"  shape="round" color="danger" fill="outline">
+                            <ion-icon  slot="start" name="arrow-back"></ion-icon>
+                            Atrás
+                        </button>
+                    </ion-col>
+                    <ion-col>
+
+                            <button  type="submit"  shape="round" fill="outline">
+                                <ion-icon slot="start" name="save"></ion-icon>
+                                Guardar
+                            </button>
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
+
+                </ion-card-content>
+
+            </ion-card>
+
+
+
+
+
+        </form>
+
+
+    </div>
+</ion-content>
