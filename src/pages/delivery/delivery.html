@@ -11,7 +11,7 @@
 
 
 <ion-content>
-    <ion-card *ngIf="!next">
+    <ion-card [style.display]="!next ?'block' : 'none'">
       <ion-card-title text-center>Seleccione Ubicación</ion-card-title>
 
         <div class="map-wrapper">
@@ -20,22 +20,25 @@
             </div>
             <div #map id="map"></div>
         </div>
+        <div>
+            {{address.location.lattitude}},{{address.location.longitude}}
+        </div>
      
-        <ion-row>
-            <ion-col> <button (click)="nextStep()" round  color="danger">
-                <ion-icon  slot="start" name="arrow-forward"></ion-icon>
+        <ion-row padding>
+            <ion-col> <button ion-button (click)="nextStep()" round  color="warning">
+                <ion-icon  slot="start" padding-right name="arrow-forward"></ion-icon>
                 Siguiente
             </button></ion-col>
             <ion-col>
-                <button (click)="loadMap()" round  fill="outline">
-                    <ion-icon slot="start" name="locate"></ion-icon>
+                <button ion-button (click)="loadMap()" round >
+                    <ion-icon  padding-right slot="start" name="locate"></ion-icon>
                     Centrar
                 </button>
             </ion-col>
         </ion-row>
     </ion-card>
 
-    <div *ngIf="next">
+    <div [style.display]="next ?'block' : 'none'">
         <form (ngSubmit)="onSubmit()">
             <ion-card>
 
@@ -103,14 +106,14 @@
             <ion-grid>
                 <ion-row>
                     <ion-col>
-                        <button (click)="previousStep()"  shape="round" color="danger" fill="outline">
+                        <button ion-button (click)="previousStep()"  shape="round" color="danger" fill="outline">
                             <ion-icon  slot="start" name="arrow-back"></ion-icon>
                             Atrás
                         </button>
                     </ion-col>
                     <ion-col>
 
-                            <button  type="submit"  shape="round" fill="outline">
+                            <button ion-button  type="submit"  shape="round" fill="outline">
                                 <ion-icon slot="start" name="save"></ion-icon>
                                 Guardar
                             </button>

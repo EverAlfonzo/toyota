@@ -18,6 +18,8 @@ export class DeliveryPage {
   map: any;
   address: Address;
   next = false;
+  
+
 
   constructor(public navCtrl: NavController,
               private apollo: Apollo,
@@ -58,7 +60,11 @@ export class DeliveryPage {
 
 
     this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
-
+    this.map.addListener('tilesloaded', () => {
+      this.address.location.lattitude = this.map.center.lat();
+      this.address.location.longitude = this.map.center.lng();
+      //this.getAddressFromCoords()
+  });
    
 }
 
