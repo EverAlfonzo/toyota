@@ -1,0 +1,176 @@
+
+
+
+<ion-content class="login-content" padding>
+
+    <ion-card>
+
+        <ion-card-header>
+
+                <img src="assets/imgs/logo.png">
+
+           
+
+        </ion-card-header>
+        <ion-card-content>
+            <div padding>
+                <ion-segment [(ngModel)]="opt" color="primary">
+                    <ion-segment-button value="signin">
+                        LOGIN
+                    </ion-segment-button>
+                    <ion-segment-button value="signup">
+                        REGISTRO
+                    </ion-segment-button>
+                </ion-segment>
+            </div>
+
+            <div [ngSwitch]="opt">
+
+
+
+                <form  *ngSwitchCase="'signin'" (ngSubmit)="doLogin( form )"  #form="ngForm">
+
+                    <ion-row>
+                        <ion-col col-2 margin-vertical>
+                            <ion-icon class="form-icon" name="mail" ></ion-icon>
+                        </ion-col>
+                        <ion-col col-10>
+                            <ion-item>
+                                <ion-label floating>  Email</ion-label>
+                                <ion-input type="text"  clearInput required="required"
+                                           [(ngModel)]="user.email"  name="email"></ion-input>
+                            </ion-item>
+                        </ion-col>
+                    </ion-row>
+
+                    <ion-row>
+                        <ion-col col-2 margin-vertical>
+                            <ion-icon class="form-icon" name="key" ></ion-icon>
+                        </ion-col>
+                        <ion-col col-10>
+                            <ion-item>
+                                <ion-label floating>  Contraseña</ion-label>
+                                <ion-input type="password"  clearInput required="required"
+                                           [(ngModel)]="user.password"  name="password"></ion-input>
+                            </ion-item>
+                        </ion-col>
+                    </ion-row>
+
+                    <br>
+                    <ion-row>
+                        <ion-col size="3">
+                        </ion-col>
+                        <ion-col size="6" >
+                                <button ion-button [color]="!form.invalid ? 'gray' : 'danger'"  type="submit" [disabled]="form.invalid" 
+                                round>Entrar</button>
+
+                        </ion-col>
+                        <ion-col size="3">
+                        </ion-col>
+                    </ion-row>
+                </form>
+
+
+                <form  *ngSwitchCase="'signup'" (ngSubmit)="doSignup( form )"   #form="ngForm" >
+
+
+                    <ion-row>
+                        <ion-col col-2 margin-vertical>
+                            <ion-icon class="form-icon" name="person" ></ion-icon>
+                        </ion-col>
+                        <ion-col col-10>
+                            <ion-item>
+                                <ion-label  floating>  Nombre:</ion-label>
+                                <ion-input type="text"  clearInput required="required"
+                                           [(ngModel)]="user.name"  name="name"></ion-input>
+                            </ion-item>
+                        </ion-col>
+                    </ion-row>
+
+                    <ion-row>
+                        <ion-col col-2 margin-vertical>
+                            <ion-icon class="form-icon" name="mail" ></ion-icon>
+                        </ion-col>
+                        <ion-col col-10>
+                            <ion-item>
+                                <ion-label floating>  Email</ion-label>
+                                <ion-input type="text"  clearInput required="required"
+                                           [(ngModel)]="user.email"  name="email"></ion-input>
+                            </ion-item>
+                        </ion-col>
+                    </ion-row>
+
+                    <ion-row>
+                        <ion-col col-2 margin-vertical>
+                            <ion-icon class="form-icon" name="key" ></ion-icon>
+                        </ion-col>
+                        <ion-col col-10>
+                            <ion-item>
+                                <ion-label floating>  Contraseña</ion-label>
+                                <ion-input type="password"  clearInput required="required"
+                                           [(ngModel)]="user.password"  name="password"></ion-input>
+                            </ion-item>
+                        </ion-col>
+                    </ion-row>
+ 
+
+                    <ion-row>
+                        <ion-col col-2 margin-vertical>
+                            <ion-icon name="call" class="form-icon" ></ion-icon>
+                        </ion-col>
+                        <ion-col col-10>
+                                <ion-item>
+                                <ion-label floating>  Celular</ion-label>
+                                <ion-input type="number"  clearInput required="required"
+                                           [(ngModel)]="user.phone"  name="phone"></ion-input>
+                            </ion-item>
+                        </ion-col>
+                    </ion-row>
+
+
+                    <ion-row>
+                        <ion-col size="3">
+                        </ion-col>
+                        <ion-col size="6" >
+                                <button ion-button type="submit"   (click)="doSignup()"  [disabled]="form.invalid"
+                                [color]="!form.invalid ? 'gray' : 'danger'"  round>Entrar</button>
+
+                        </ion-col>
+                        <ion-col size="3">
+                        </ion-col>
+                    </ion-row>
+
+                </form>
+
+
+
+            </div>
+
+
+
+            <br><br>
+            <ion-row>
+                    <ion-col size="6">
+                        <div>
+                            <button class="loginBtn loginBtn--facebook"   expand="block" (click)="doFbLogin()">
+                                FACEBOOK
+                            </button>
+                        </div>
+                    </ion-col>
+                    <ion-col size="6">
+                        <div>
+                            <button class="loginBtn loginBtn--google"  color="danger" expand="block" (click)="doGoogleLogin()">
+                                GOOGLE
+                            </button>
+                        </div>
+                    </ion-col>
+                </ion-row>
+        </ion-card-content>
+
+    </ion-card>
+
+   
+
+
+
+</ion-content>

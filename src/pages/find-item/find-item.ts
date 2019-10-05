@@ -28,7 +28,7 @@ export class FindItemPage {
   modules_list: any = [];
   showFilterForm = true;
   enableSearchButton = true;
-  selected_department: number = 0;
+  selected_department: string = "";
   selected_city: string = "";
   selected_item: string;
   directionsService: any = null;
@@ -262,9 +262,7 @@ export class FindItemPage {
 
   onchangeItem(data) {
     this.selected_item = data;
-    if (this.selected_department && data) {
-      this.enableSearchButton = false;
-    }
+   
   }
 
   onchangeDepartment($event) {
@@ -276,10 +274,7 @@ export class FindItemPage {
         this.cities.push(c);
       }
     });
-    if (this.selected_item && $event) {
-      this.enableSearchButton = false;
-      this.cities = this.all_data.cities;
-    }
+    
   }
 
 

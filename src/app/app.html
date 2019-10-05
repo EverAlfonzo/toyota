@@ -3,7 +3,7 @@
    <ion-item class="menu-item" (click)="openPage('menu');toggleGroup(i) " >
 
       <ion-thumbnail>
-          <img src="assets/imgs/logo.png">
+          <img src="assets/imgs/logo.png" style="width: 80%">
       </ion-thumbnail>
    </ion-item>
      
@@ -49,9 +49,17 @@
     (click)="openPage('home');toggleGroup(i)"
     [ngClass]="{'active':isGroupShown(i)}">
     <p class="side-title" style="margin-left: 15px !important"  item-left>
-      <ion-icon name="home"></ion-icon> Nosotros</p>
+      <ion-icon name="home"></ion-icon> NOSOTROS</p>
+      
   </ion-item>
 
+  <ion-item item-left menuClose 
+  (click)="doLogout();toggleGroup(i)"
+  [ngClass]="{'active':isGroupShown(i)}">
+  <p class="side-title" style="margin-left: 15px !important"  item-left>
+    <ion-icon name="exit"></ion-icon> SALIR</p>
+    
+</ion-item>
 
 
 

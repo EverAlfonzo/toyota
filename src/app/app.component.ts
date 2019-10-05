@@ -12,7 +12,7 @@ export class MyApp {
   @ViewChild(Nav) nav: Nav;
      
   //rootPage: any = 'HomePage';
-  rootPage: any = 'MenuPage';
+  rootPage: any = 'LoginPage';
   pages: Array<string>;
   public alertShown:boolean = false;
   public animateVarible:boolean=false;
@@ -54,6 +54,34 @@ export class MyApp {
       
     });
   }
+
+  doLogout() {
+    this.nav.setRoot('LoginPage');
+    // this.doFbLogout();
+    // this.doGoogleLogout();
+    // this.router.navigate(["/login"]);
+  }
+
+  doFbLogout() {
+    // this.fb.logout()
+    //     .then(res => {
+    //     }, err => {
+    //       console.log(err);
+    //     });
+  }
+
+
+  doGoogleLogout() {
+    // this.googlePlus.logout()
+    //     .then(res => {
+    //       //user logged out so we will remove him from the NativeStorage
+
+    //     }, err => {
+    //       console.log(err);
+    //     })
+  }
+
+
 
   presentConfirm() {
     let alert = this.alertCtrl.create({

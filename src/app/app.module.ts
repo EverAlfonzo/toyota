@@ -21,6 +21,7 @@ import { InAppBrowser } from '@ionic-native/in-app-browser';
 
 import * as ionicGalleryModal from 'ionic-gallery-modal';
 import { HAMMER_GESTURE_CONFIG } from '@angular/platform-browser';
+import { IonicStorageModule } from '@ionic/storage';
 
 
 /* config IOS 
@@ -51,9 +52,11 @@ var config = {
   ],
   imports: [
     BrowserModule,
+    
     IonicModule.forRoot(MyApp,config),
     Ionic2RatingModule, // Put ionic2-rating module here
     GraphQLModule,
+    IonicStorageModule.forRoot(),
     ionicGalleryModal.GalleryModalModule
   ],
   bootstrap: [IonicApp],
@@ -73,7 +76,7 @@ var config = {
     ConnectivityProvider,
     File,
     FileTransfer,
-    DocumentViewer,
+        DocumentViewer,
     InAppBrowser
   ]
 })
