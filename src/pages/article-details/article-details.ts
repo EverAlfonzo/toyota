@@ -21,7 +21,8 @@ export class ArticleDetailsPage {
               public navParams: NavParams,
               private sanitizer: DomSanitizer) {
             
-           
+                this.item = this.navParams.get('item');
+          
   }
   getImgContent(url): SafeUrl {
     return this.sanitizer.bypassSecurityTrustUrl(url);
@@ -29,18 +30,18 @@ export class ArticleDetailsPage {
 
   ngOnInit() {
   
-      this.apollo
-        .watchQuery({
-          query:QueryArticles,
-        })
-        .valueChanges.subscribe((res:any) => {
-          if (res.data.hasOwnProperty('articles')){
-            this.item = res.data.articles[0];    
-          }
-          if(!this.item){
-            this.navCtrl.push('HomePage');
-          }   
-        });
+      // this.apollo
+      //   .watchQuery({
+      //     query:QueryArticles,
+      //   })
+      //   .valueChanges.subscribe((res:any) => {
+      //     if (res.data.hasOwnProperty('articles')){
+      //       this.item = res.data.articles[0];    
+      //     }
+      //     if(!this.item){
+      //       this.navCtrl.push('HomePage');
+      //     }   
+      //   });
   }
 
   

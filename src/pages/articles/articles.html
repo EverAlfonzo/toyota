@@ -14,7 +14,7 @@
       <ion-col col-12 col-md-6 col-lg-4 col-xl-3 *ngFor="let item of articles">
         <ion-card class="article">
             <div class="article_img" > 
-                <img [src]="getImgContent(item.image)">
+                <img [src]="getImgContent(item.image)" style="max-height: 200px">
                  <!--
                 <ion-icon name="md-share" color="light" (click)="social_media($event)"></ion-icon>
                  -->
@@ -26,7 +26,7 @@
             <p>
                 {{item.content}}
             </p>
-            <button navPush="ArticleDetailsPage"  [navParams]="{item:item}"
+            <button navPush="ArticleDetailsPage"  [navParams]="{item:item}" 
             ion-button clear margin-top color="color2" float-right>
               Ver mas
             </button>

@@ -24,7 +24,7 @@ export class MenuPage {
         }
     });
     if (code == 'article-details'){
-      page =  { code:'article-details',title: 'Consejo del Dia', component: 'ArticleDetailsPage'}
+      page =  { code:'article-details',title: 'Artículos', component: 'ArticleDetailsPage'}
     }
     
    if(!page){

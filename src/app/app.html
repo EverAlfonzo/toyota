@@ -1,6 +1,6 @@
 <ion-menu [content]="content" class="my-menu" swipeEnabled="true" type="overlay" >
   <ion-header > 
-   <ion-item class="menu-item">
+   <ion-item class="menu-item" (click)="openPage('menu');toggleGroup(i) " >
 
       <ion-thumbnail>
           <img src="assets/imgs/logo.png">

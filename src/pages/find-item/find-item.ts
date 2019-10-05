@@ -24,7 +24,7 @@ export class FindItemPage {
   cities: any = [];
   item_list: any = [];
   seeOnMap = true;
-
+  title = "Buscar";
   modules_list: any = [];
   showFilterForm = true;
   enableSearchButton = true;
@@ -55,11 +55,16 @@ export class FindItemPage {
 
     this.directionsService = new google.maps.DirectionsService();
     this.directionsDisplay = new google.maps.DirectionsRenderer();
+    
+  
+      let selected_item = this.navParams.get('moduleName');
+      
+      let title = this.navParams.get('title');
+      if (title){
+        this.title = title;
+      }
 
-    // this.setCurrentPosition().then((res)=>{
-    //   this.setMap();
-    // });
-    //this.setCurrentPosition();
+  
     this.setMap();
 
 
@@ -75,6 +80,11 @@ export class FindItemPage {
   }
 
 
+  compareFn(e1, e2): boolean {
+    return e1 === e2;
+  }
+
+
   async presentLoading() {
     this.loading = await this.loadingController.create({
       content: '',
@@ -87,12 +97,8 @@ export class FindItemPage {
   }
 
   getModules() {
-    this.modules_list.push(AppModules.hospitals);
-    this.modules_list.push(AppModules.doctors);
-    this.modules_list.push(AppModules.laboratories);
-    this.modules_list.push(AppModules.pharmacies);
-    this.modules_list.push(AppModules.rehabilitations);
-    this.modules_list.push(AppModules.diagnostics);
+    this.modules_list.push(AppModules.talleres.code);
+    console.log(this.modules_list)
   }
 
 
@@ -126,7 +132,6 @@ export class FindItemPage {
         departments {
           id
           name
-          default
         }
         cities {
           id
@@ -177,22 +182,8 @@ export class FindItemPage {
   }
 
   getMutationName() {
-    let mutationName = "";
-    if (this.selected_item == AppModules.hospitals.code) {
-      mutationName = "searchHospitals";
-    } else if (this.selected_item == AppModules.laboratories.code) {
-      mutationName = "searchLaboratories";
-    } else if (this.selected_item == AppModules.pharmacies.code) {
-      mutationName = "searchPharmacies";
-    } else if (this.selected_item == AppModules.rehabilitations.code) {
-      mutationName = "searchRehabilitations";
-    } else if (this.selected_item == AppModules.doctors.code) {
-      mutationName = "searchDoctors";
-    } else if (this.selected_item == AppModules.emergencies.code) {
-      mutationName = "searchEmergencies";
-    } else if (this.selected_item == AppModules.diagnostics.code) {
-      mutationName = "searchDiagnostics";
-    }
+    let mutationName = "searchTalleres";
+   
     return mutationName;
   }
 
@@ -208,7 +199,7 @@ export class FindItemPage {
       this.apollo.mutate({
         mutation: mutation,
       }).subscribe(({ data }) => {
-        this.item_list = data[mutationName][this.selected_item];
+        this.item_list = data[mutationName]["objectList"];
         if (this.currentPosition) {
           this.item_list.forEach(i => {
             if (i.location.split(",").length == 2) {
@@ -287,6 +278,7 @@ export class FindItemPage {
     });
     if (this.selected_item && $event) {
       this.enableSearchButton = false;
+      this.cities = this.all_data.cities;
     }
   }
 
@@ -344,7 +336,7 @@ export class FindItemPage {
                 font-size: 15px;
                 font-weight: 400;
                 padding: 10px;
-                background-color: #488aff;
+                background-color: #cc0000;
                 color: white;
                 margin: 1px;
                 border-radius: 2px 2px 0 0; /* In accordance with the rounding of the default infowindow corners. */

@@ -43,8 +43,8 @@ export const TalleresQuery = gql(getQuery('talleres'));
 export function getMutation(name,result,departmentId,cityId){
     let query = `mutation {
         ${name}(departmentId: "${departmentId}", cityId: "${cityId}") {
-          ${result} {
-             id
+          objectList {
+                id
                 name
                 description
                 phone

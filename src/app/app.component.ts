@@ -92,9 +92,7 @@ export class MyApp {
           page = AppModules[element];
         }
     });
-    if (code == 'article-details'){
-      page =  { code:'article-details',title: 'Consejo del Dia', component: 'ArticleDetailsPage'}
-    }
+  
     
     if (!page){
     page =  { code:'contact',title: 'Contacto', component: 'ContactPage'}
@@ -109,7 +107,8 @@ export class MyApp {
       {
         pageQuery:page.query,
         title:page.title,
-        moduleName:page.code
+        moduleName:page.code,
+        
       });
     if(page=='SignInPage'){
       this.shownGroup = null;

@@ -51,7 +51,7 @@ export class GlobalsProvider {
 }
 
 export const AppModules =  {
-  talleres:{code:'talleres',title:'Talleres',component: 'ObjectlistPage',query: TalleresQuery},
+  talleres:{code:'talleres',title:'Talleres',component: 'FindItemPage'},
   articles:{code:'articles', title: 'Consejos Útiles', component: 'ArticlesPage' },
   contact:{code:'contact', title: 'Contacto', component: 'ContactPage' },
   home: { code:'home',title: ' Nosotros', component: 'HomePage'}, 
