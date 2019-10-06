@@ -1,0 +1,20 @@
+
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle icon-only>
+      <!-- <ion-icon class="my-menu"></ion-icon> -->
+    </button>
+    <ion-title>Mis Servicios</ion-title>
+   
+  </ion-navbar>
+</ion-header>
+
+<ion-content style="background: #ececec !important;">
+        <ion-list class="list_items">
+         <ion-item class="item-form" *ngFor="let item of services" [navParams]="{item:item}" navPush="ServiceDetailPage" >
+            {{item.workshop.name}} - {{item.date}} {{item.time}}HS
+            <ion-icon name="arrow-forward" item-end></ion-icon>
+            </ion-item>
+          </ion-list>
+ 
+</ion-content>

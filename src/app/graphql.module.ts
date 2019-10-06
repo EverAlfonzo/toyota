@@ -9,7 +9,8 @@ import { ApolloLink } from "apollo-link";
 // "http://165.22.12.102/graphql"
 
 
-let develop = "http://192.168.0.5:8000/graphql"
+let develop = "http://192.168.0.5:8000/graphql";
+let production = "http://3.82.66.35/graphql"
 @NgModule({
   exports: [HttpClientModule, ApolloModule, HttpLinkModule]
 })
@@ -20,7 +21,7 @@ export class GraphQLModule {
 
     
     apollo.create({
-      link: httpLink.create({ uri: develop, withCredentials: true}),
+      link: httpLink.create({ uri: develop , withCredentials: true}),
       cache: new InMemoryCache() as any,
     });
     

@@ -1,0 +1,213 @@
+
+
+<ion-header>
+  <ion-navbar>
+    <button button menuToggle icon-only>
+      <!-- <ion-icon class="my-menu"></ion-icon> -->
+    </button>
+    <ion-title>Ver Servicio</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+    <ion-card >
+        <ion-card-content *ngIf="service"> 
+            <form    #form="ngForm">
+                <ion-row>
+                    <ion-col>
+                    <ion-item class="item-form">
+                      <ion-label text-center style="color: #cc0000">Datos Personales</ion-label>
+                    </ion-item>
+                  </ion-col>
+                  </ion-row>
+                  <ion-row>
+                      <ion-col>
+                      <ion-item class="item-form">
+                          <ion-label  style="color: black">  Nombre </ion-label>
+                          <ion-input type="text"  readonly [(ngModel)]="service.user.first_name"  
+                           name="first_name"></ion-input>
+                      </ion-item>
+                    </ion-col>
+                    </ion-row>
+                    <ion-row>
+                        <ion-col>
+                        <ion-item class="item-form">
+                            <ion-label  style="color: black">  Email </ion-label>
+                            <ion-input type="text"  readonly [(ngModel)]="service.user.email"  
+                             name="email"></ion-input>
+                        </ion-item>
+                      </ion-col>
+                      </ion-row>
+
+                  <ion-row>
+                      <ion-col>
+                      <ion-item class="item-form">
+                          <ion-label  style="color: black">  Celular </ion-label>
+                          <ion-input type="text"  readonly [(ngModel)]="service.user.profile.phone"  
+                           name="phone"></ion-input>
+                      </ion-item>
+                    </ion-col>
+                    </ion-row>
+
+              <ion-row>
+                <ion-col>
+                <ion-item class="item-form">
+                    <ion-label  style="color: black">  Documento/CI *</ion-label>
+                    <ion-input type="text"  readonly [(ngModel)]="service.document"  
+                     name="document"></ion-input>
+                </ion-item>
+              </ion-col>
+              </ion-row>
+
+              <ion-row>
+                  <ion-col>
+                  <ion-item class="item-form">
+                    <ion-label text-center style="color: #cc0000">Datos del Vehículo</ion-label>
+                  </ion-item>
+                </ion-col>
+                </ion-row>
+              
+
+              <ion-row>
+                  <ion-col>
+                    <ion-item class="item-form" >
+                        <ion-label style="color: black">Marca</ion-label>
+                        <ion-input type="text"  readonly [(ngModel)]="service.brand.name"  
+                     name="document"></ion-input>
+                      
+                      </ion-item>
+                  </ion-col>
+                </ion-row>
+
+                <ion-row>
+                    <ion-col>
+                      <ion-item class="item-form" >
+                          <ion-label style="color: black">Modelo</ion-label>
+                          <ion-input type="text"  readonly [(ngModel)]="service.model.name"  
+                       name="model"></ion-input>
+                        
+                        </ion-item>
+                    </ion-col>
+                  </ion-row>
+
+
+                  <ion-row>
+                      <ion-col>
+                      <ion-item class="item-form">
+                          <ion-label  style="color: black">  Año</ion-label>
+                          <ion-input type="text"  readonly [(ngModel)]="service.year"  
+                          name="year"></ion-input>
+                      </ion-item>
+                    </ion-col>
+                    </ion-row>
+
+
+                    <ion-row>
+                        <ion-col>
+                        <ion-item class="item-form">
+                            <ion-label  style="color: black">  Kilometraje</ion-label>
+                            <ion-input type="text"  readonly [(ngModel)]="service.carKm"  
+                       name="carKm"></ion-input>
+                        </ion-item>
+                      </ion-col>
+                      </ion-row>
+
+                      <ion-row>
+                          <ion-col>
+                        <ion-item class="item-form">
+                          <ion-label  style="color: black">Tipo</ion-label>
+                          <ion-input type="text"  readonly [(ngModel)]="service.idType"  
+                          name="idType"></ion-input>
+                          </ion-item>
+                          </ion-col>
+                        </ion-row>
+
+                        <ion-row>
+                            <ion-col>
+                            <ion-item class="item-form">
+                                <ion-label  style="color: black">  Numero</ion-label>
+                                <ion-input type="text"  [(ngModel)]="service.licensePlate"  
+                                readonly name="licencePlate"></ion-input>
+                            </ion-item>
+                          </ion-col>
+                          </ion-row>
+
+                      
+                          <ion-row>
+                              <ion-col>
+                              <ion-item class="item-form">
+                                <ion-label text-center style="color: #cc0000">Agendamiento</ion-label>
+                              </ion-item>
+                            </ion-col>
+                            </ion-row>
+                            
+                            <ion-row>
+                                <ion-col>
+                                <ion-item class="item-form">
+                                    <ion-label  style="color: black">  Taller</ion-label>
+                                    <ion-input type="text"  [(ngModel)]="service.workshop.name"  
+                                    readonly name="workshop"></ion-input>
+                                </ion-item>
+                              </ion-col>
+                              </ion-row>
+                           
+
+                           
+                              <ion-row>
+                                  <ion-col>
+                                  <ion-item class="item-form">
+                                      <ion-label  style="color: black">  Tipo de Servicio</ion-label>
+                                      <ion-input type="text"  [(ngModel)]="service.serviceType.name"  
+                                      readonly name="serviceType"></ion-input>
+                                  </ion-item>
+                                </ion-col>
+                                </ion-row>
+
+
+
+                                  <ion-row>
+                                      <ion-col>
+                                          <ion-label text-center>Indicanos una Fecha para la visita</ion-label>
+                                      </ion-col>
+                                    </ion-row>
+
+
+                              <ion-row>
+                                  <ion-col>
+                                      <ion-item>
+                                          <ion-label style="color: black" >  Fecha </ion-label>
+
+                                          <ion-input type="date"  readonly
+                                                     [(ngModel)]="service.date"  name="date"></ion-input>
+                                      </ion-item>
+                                  </ion-col>
+                              </ion-row>
+          
+                              <ion-row>
+                                  <ion-col>
+                                      <ion-item>
+                                          <ion-label style="color: black" >  Hora </ion-label>
+                                          <ion-input type="time" readonly
+                                                     [(ngModel)]="service.time"  name="time"></ion-input>
+                                      </ion-item>
+                                  </ion-col>
+                              </ion-row>
+          
+          
+                              <ion-row>
+                                  <ion-col >
+                                      <ion-item>
+                                          <ion-label  style="color: black"   >  Comentarios</ion-label>
+                                          <ion-textarea type="string"  readonly placeholder="Comentarios adicionales..." 
+                                                        [(ngModel)]="service.comment"  name="comment"></ion-textarea>
+                                      </ion-item>
+                                  </ion-col>
+                              </ion-row>
+
+
+              </form>
+
+          </ion-card-content>
+    </ion-card>
+   
+</ion-content>

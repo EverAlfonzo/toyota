@@ -57,12 +57,10 @@ export class UserService {
                 }
               }
               `
-              console.log(mutation)
               this.apollo.mutate({
                 mutation: gql(mutation),
                // errorPolicy: 'none'
               }).subscribe(({ data }) => {
-                console.log(data);
                 this.storage.set(TOKEN_KEY, data.tokenAuth.token);
                 this.user = this.helper.decodeToken(data.tokenAuth.token);
                 this.storage.set('user', this.user);
@@ -97,7 +95,6 @@ export class UserService {
             }
           }
           `
-          console.log(mutation)
           this.apollo.mutate({
             mutation: gql(mutation)
           }).subscribe(({ data }) => {
@@ -159,7 +156,6 @@ export class UserService {
           }
         }
         `
-        console.log(mutation)
       
         this.apollo.mutate({
           mutation: gql(mutation)
@@ -178,7 +174,6 @@ export class UserService {
 
   me(username){
     
-    console.log(this.user)
     return new Promise<any>((resolve, reject) => {
       let mutation = ` mutation {
         userData(username: "${username}") {
@@ -275,6 +270,104 @@ export class UserService {
         })
       });
         
+  }
+
+
+  myServices(username){
+    
+    return new Promise<any>((resolve, reject) => {
+      let mutation = `mutation {
+        myServices(username: "${username}") {
+          services {
+            id
+            user {
+              id
+              username
+              email
+              profile {
+                phone
+              }
+            }
+            document
+            brand {
+              id
+              name
+            }
+            model {
+              id
+              name
+            }
+            year
+            carKm
+            idType
+            serviceType {
+              id
+              name
+            }
+            licensePlate
+            workshop {
+              id
+              name
+              city {
+                id
+                name
+              }
+            }
+            idType
+            date
+            time
+            comment
+          }
+        }
+      }
+      
+      `
+      this.apollo.mutate({
+        mutation: gql(mutation)
+      }).subscribe(({ data }) => {
+        resolve(data.myServices)
+      }, (err) => {
+        console.log(err)
+        if (err.graphQLErrors) {        
+            (err.graphQLErrors)
+        }    
+      reject(err)
+      })
+    });
+  }
+
+
+  myDeliveries(username){
+    
+    return new Promise<any>((resolve, reject) => {
+      let mutation = `mutation {
+        myDeliveries(username: "${username}") {
+          deliveries {
+            user {
+              id
+              username
+            }
+            date
+            time
+            location
+            comment
+          }
+        }
+      }
+      
+      `
+      this.apollo.mutate({
+        mutation: gql(mutation)
+      }).subscribe(({ data }) => {
+        resolve(data.myDeliveries)
+      }, (err) => {
+        console.log(err)
+        if (err.graphQLErrors) {        
+            (err.graphQLErrors)
+        }    
+      reject(err)
+      })
+    });
   }
 
 }

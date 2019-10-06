@@ -51,7 +51,6 @@ export class MyApp {
       
 
         this.userService.authenticationState.subscribe(state => {
-          console.log(state, "stateee")
           if (state) {
             this.nav.setRoot('MenuPage');
           } else {
@@ -69,7 +68,7 @@ export class MyApp {
       }, 0)
       
     } , error=>{
-      alert(JSON.stringify(error))
+      console.log(JSON.stringify(error))
     });
   }
 

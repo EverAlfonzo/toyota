@@ -25,12 +25,16 @@
           <ion-icon name="search"></ion-icon> Inicio</p>
         </ion-item> -->
 
+
         <ion-item item-left menuClose 
-        (click)="openPage('talleres');toggleGroup(i)"
+        (click)="openPage('services');toggleGroup(i)"
         [ngClass]="{'active':isGroupShown(i)}">
         <p class="side-title" style="margin-left: 15px !important"  item-left>
-          <ion-icon name="build"></ion-icon> TALLERES</p>
+          <ion-icon name="build"></ion-icon> MIS SERVICIOS</p>
         </ion-item>
+
+
+       
 
 
 
@@ -56,6 +60,13 @@
     <p class="side-title" style="margin-left: 15px !important"  item-left>
       <ion-icon name="home"></ion-icon> NOSOTROS</p>
       
+  </ion-item>
+
+  <ion-item item-left menuClose 
+  (click)="openPage('talleres');toggleGroup(i)"
+  [ngClass]="{'active':isGroupShown(i)}">
+  <p class="side-title" style="margin-left: 15px !important"  item-left>
+    <ion-icon name="build"></ion-icon> TALLERES</p>
   </ion-item>
 
   <ion-item item-left menuClose 
