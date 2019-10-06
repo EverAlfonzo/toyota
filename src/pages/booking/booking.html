@@ -9,7 +9,213 @@
   </ion-navbar>
 </ion-header>
 
-
 <ion-content>
+    <ion-card>
+        <ion-card-content>
+            <form  (ngSubmit)="onSubmit( form )"  #form="ngForm">
+                <ion-row>
+                    <ion-col>
+                    <ion-item class="item-form">
+                      <ion-label text-center style="color: #cc0000">Datos Personales</ion-label>
+                    </ion-item>
+                  </ion-col>
+                  </ion-row>
+              <ion-row>
+                <ion-col>
+                <ion-item class="item-form">
+                    <ion-label  style="color: black">  Documento/CI *</ion-label>
+                    <ion-input type="text"  clearInput [(ngModel)]="service.document"  
+                    required="required" name="document"></ion-input>
+                </ion-item>
+              </ion-col>
+              </ion-row>
+
+              <ion-row>
+                  <ion-col>
+                  <ion-item class="item-form">
+                    <ion-label text-center style="color: #cc0000">Datos del Vehículo</ion-label>
+                  </ion-item>
+                </ion-col>
+                </ion-row>
+              
+
+              <ion-row>
+                  <ion-col>
+                <ion-item class="item-form" >
+                    <ion-label>Marca</ion-label>
+                    <ion-select interface="popover" [(ngModel)]="service.brandId"
+                     (ionChange)="onchangeBrand($event)" name="brandId" 
+                      placeholder="Marca del Vehículo">
+                      <ion-option value="{{item.id}}" [selected]="service.brandId == item.id"
+                        *ngFor="let item of brands">{{item.name}}</ion-option>
+                    </ion-select>
+                  </ion-item>
+                  </ion-col>
+                </ion-row>
+
+
+
+                <ion-row>
+                    <ion-col>
+                  <ion-item class="item-form">
+                    <ion-label>Modelo</ion-label>
+                      <ion-select interface="popover" [(ngModel)]="service.modelId"
+                      (ionChange)="onchangeModel($event)" name="modelId" placeholder="Modelo del Vehículo">
+                        <ion-option value="" > Seleccione Modelo..</ion-option>
+                        <ion-option value="{{item.id}}" [selected]="service.modelId == item.id"
+                          *ngFor="let item of models">{{item.name}}</ion-option>
+                      </ion-select>
+                    </ion-item>
+                    </ion-col>
+                  </ion-row>
+
+                  <ion-row>
+                      <ion-col>
+                      <ion-item class="item-form">
+                          <ion-label  style="color: black">  Año</ion-label>
+                          <ion-input type="number"  clearInput [(ngModel)]="service.year"  
+                          required="required" name="year"></ion-input>
+                      </ion-item>
+                    </ion-col>
+                    </ion-row>
+
+
+                    <ion-row>
+                        <ion-col>
+                        <ion-item class="item-form">
+                            <ion-label  style="color: black">  Kilometraje</ion-label>
+                            <ion-input type="number"  clearInput [(ngModel)]="service.carKm"  
+                            required="required" name="carKm"></ion-input>
+                        </ion-item>
+                      </ion-col>
+                      </ion-row>
+
+                      <ion-row>
+                          <ion-col>
+                        <ion-item class="item-form">
+                          <ion-label >Tipo</ion-label>
+                            <ion-select interface="popover"  [(ngModel)]="service.idType"
+                              [placeholder]="Tipo" name="idType">
+                              <ion-option value="" > Seleccione Tipo..</ion-option>
+                              <ion-option value="CHAPA" [selected]="service.moidTypedelId == 'CHAPA'">Chapa</ion-option>
+                              <ion-option value="CHASIS" [selected]="service.moidTypedelId == 'CHASIS'">Chasis</ion-option>
+                            </ion-select>
+                          </ion-item>
+                          </ion-col>
+                        </ion-row>
+
+                        <ion-row>
+                            <ion-col>
+                            <ion-item class="item-form">
+                                <ion-label  style="color: black">  Numero</ion-label>
+                                <ion-input type="text"  clearInput [(ngModel)]="service.licensePlate"  
+                                required="required" name="licencePlate"></ion-input>
+                            </ion-item>
+                          </ion-col>
+                          </ion-row>
+
+                      
+                          <ion-row>
+                              <ion-col>
+                              <ion-item class="item-form">
+                                <ion-label text-center style="color: #cc0000">Agendamiento</ion-label>
+                              </ion-item>
+                            </ion-col>
+                            </ion-row>
+                           
+
+                            <ion-row>
+                              <ion-col>
+                               <ion-item class="item-form" >
+                                
+                                  <ion-select interface="popover" [(ngModel)]="service.workshopId"
+                                    name="workshopId"
+                                    placeholder="Taller">
+                                    <ion-option value="0" [selected]="selected_workshop == 0"> Seleccione Taller..</ion-option>
+                                    <ion-option value="{{item.id}}" [selected]="service.workshopId == item.id"
+                                      *ngFor="let item of workshops">{{item.name}} - {{item.city.name}}</ion-option>
+                                  </ion-select>
+                                </ion-item>
+                                </ion-col>
+                              </ion-row>
+
+    
+                                <ion-row>
+                                  <ion-col>
+                                   <ion-item class="item-form" >
+                                    
+                                      <ion-select interface="popover" [(ngModel)]="service.serviceTypeId"
+                                        name="workshopId"
+                                        placeholder="Tipo de Servicio">
+                                        <ion-option value="0" [selected]="selected_workshop == 0"> Seleccione Taller..</ion-option>
+                                        <ion-option value="{{item.id}}" [selected]="service.serviceTypeId == item.id"
+                                          *ngFor="let item of servicesTypes">{{item.name}}</ion-option>
+                                      </ion-select>
+                                    </ion-item>
+                                    </ion-col>
+                                  </ion-row>
+
+
+
+                                  <ion-row>
+                                      <ion-col>
+                                          <ion-label text-center>Indicanos una Fecha para la visita</ion-label>
+                                      </ion-col>
+                                    </ion-row>
+
+
+                              <ion-row>
+                                  <ion-col>
+                                      <ion-item>
+                                          <ion-label style="color: black" >  Fecha </ion-label>
+                                          <ion-input type="date"  clearInput  required="required"
+                                                     [(ngModel)]="service.date"  name="date"></ion-input>
+                                      </ion-item>
+                                  </ion-col>
+                              </ion-row>
+          
+                              <ion-row>
+                                  <ion-col>
+                                      <ion-item>
+                                          <ion-label style="color: black" >  Hora </ion-label>
+                                          <ion-input type="time"  clearInput  required="required"
+                                                     [(ngModel)]="service.time"  name="time"></ion-input>
+                                      </ion-item>
+                                  </ion-col>
+                              </ion-row>
+          
+          
+                              <ion-row>
+                                  <ion-col >
+                                      <ion-item>
+                                          <ion-label  style="color: black"   >  Comentarios</ion-label>
+                                          <ion-textarea type="string"  clearInput placeholder="Comentarios adicionales..." 
+                                                        [(ngModel)]="service.comment"  name="comment"></ion-textarea>
+                                      </ion-item>
+                                  </ion-col>
+                              </ion-row>
+
+
+                              <ion-row>
+                                <ion-col>
+                                  <ion-item text-center>
+
+                                      <button round ion-button  type="submit"  round >
+                                          <ion-icon slot="start" name="save"></ion-icon>
+                                          Guardar
+                                      </button>
+                                  </ion-item>
+                                </ion-col>
+                              </ion-row>
+
+
+
+                  
+
+
+              </form>
+
+          </ion-card-content>
+    </ion-card>
    
 </ion-content>

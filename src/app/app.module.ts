@@ -24,6 +24,7 @@ import { HAMMER_GESTURE_CONFIG } from '@angular/platform-browser';
 import { IonicStorageModule,Storage } from '@ionic/storage';
 import { UserService } from '../providers/services/user.service';
 import { JwtModule, JWT_OPTIONS } from '@auth0/angular-jwt';
+import { ServiceService } from '../providers/services/service.service';
 
 
 export function jwtOptionsFactory(storage) {
@@ -82,6 +83,7 @@ var config = {
   ],
   providers: [
     UserService,
+    ServiceService,
     Geolocation,
     StatusBar,    
     SplashScreen,Camera,

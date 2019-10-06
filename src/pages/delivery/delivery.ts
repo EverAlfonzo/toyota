@@ -18,129 +18,132 @@ declare var google;
   
 })
 export class DeliveryPage {
-  @ViewChild('map') mapElement: ElementRef;
-  map: any;
-  delivery: Delivery;
-  next = false;
-  
+    @ViewChild('map') mapElement: ElementRef;
+    map: any;
+    delivery: Delivery;
+    next = false;
+    
 
 
-  constructor(public navCtrl: NavController,
-              private storage: Storage,
-              public userService: UserService,
-              private geolocation: Geolocation,
-              public popoverCtrl: PopoverController,
-              public toastController: ToastController,
-              public loadingController: LoadingController,
-              public navParams: NavParams) {
-            
-          this.delivery = new Delivery();
+    constructor(public navCtrl: NavController,
+                private storage: Storage,
+                public userService: UserService,
+                private geolocation: Geolocation,
+                public popoverCtrl: PopoverController,
+                public toastController: ToastController,
+                public loadingController: LoadingController,
+                public navParams: NavParams) {
+              
+            this.delivery = new Delivery();
 
-          this.storage.get('user').then(user=>{
-            this.userService.me(user.username).then(me =>{
-              this.delivery.userId = me.id;
-            })
-          });
-      
+            this.storage.get('user').then(user=>{
+              this.userService.me(user.username).then(me =>{
+                this.delivery.userId = me.id;
+              })
+            });
+        
 
+    }
+
+    async presentToast(message) {
+      const toast = await this.toastController.create({
+          message: message,
+          duration: 2000
+      });
+      toast.present();
   }
 
-  async presentToast(message) {
-    const toast = await this.toastController.create({
-        message: message,
-        duration: 2000
+
+    loadMap(){
+      let latLng = new google.maps.LatLng(this.delivery.location.lattitude,
+          this.delivery.location.longitude);
+      let mapOptions = {
+          center: latLng,
+          zoom: 15,
+          myLocationButton : true,
+          rotateControl: true,
+          myLocation: true,
+          mapTypeControl: false,
+          streetViewControl: false,
+          mapTypeId: google.maps.MapTypeId.ROADMAP,
+          controls: {
+              zoom: true,
+          }
+      };
+
+
+      this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
+      this.map.addListener('tilesloaded', () => {
+        this.delivery.location.lattitude = this.map.center.lat();
+        this.delivery.location.longitude = this.map.center.lng();
+        //this.getAddressFromCoords()
     });
-    toast.present();
-}
+    
+  }
 
 
-  loadMap(){
-    let latLng = new google.maps.LatLng(this.delivery.location.lattitude,
-        this.delivery.location.longitude);
-    let mapOptions = {
-        center: latLng,
-        zoom: 15,
-        myLocationButton : true,
-        rotateControl: true,
-        myLocation: true,
-        mapTypeControl: false,
-        streetViewControl: false,
-        mapTypeId: google.maps.MapTypeId.ROADMAP,
-        controls: {
-            zoom: true,
-        }
-    };
+  async ngOnInit() {
+    const loading = await this.loadingController.create({
+        content: 'Please wait...'
+    });
+    await loading.present();
 
+        this.geolocation.getCurrentPosition().then((resp) => {
+            this.delivery.location.lattitude = resp.coords.latitude;
+            this.delivery.location.longitude = resp.coords.longitude;
 
-    this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
-    this.map.addListener('tilesloaded', () => {
-      this.delivery.location.lattitude = this.map.center.lat();
-      this.delivery.location.longitude = this.map.center.lng();
-      //this.getAddressFromCoords()
-  });
-   
-}
+            this.loadMap();
+            //this.getAddressFromCoords();
+            loading.dismiss();
+        }).catch((error) => {
+            console.log('Error getting location', error);
+            loading.dismiss();
+        });
+        
+  }
 
+  nextStep(){
+    this.next = true;
+  }
 
-async ngOnInit() {
-  const loading = await this.loadingController.create({
+  previousStep(){
+    this.next = false;
+    this.loadMap();
+  }
+
+  async presentLoading(loading) {
+    return await loading.present();
+  }
+
+  async onSubmit(form: NgForm) {
+    console.log(form)
+    console.log(this.delivery)
+    if(form.invalid){
+      console.log("invalid")
+      this.presentToast("Complete el formulario")
+      return
+    }
+    const loading = await this.loadingController.create({
       content: 'Please wait...'
   });
-  await loading.present();
+    this.presentLoading(loading);
 
-      this.geolocation.getCurrentPosition().then((resp) => {
-          this.delivery.location.lattitude = resp.coords.latitude;
-          this.delivery.location.longitude = resp.coords.longitude;
+  
+    this.userService.saveDelivery(this.delivery).then(data=>{
+      loading.dismiss();
+      this.presentToast("Servicio Toyomóvil solicitado correctamente.")
+      this.navCtrl.setRoot('MenuPage');
+    }).catch(errors=>{
+      errors.forEach(e => {
+        this.presentToast(e.message);
+    });  
+      loading.dismiss();
+    })
 
-          this.loadMap();
-          //this.getAddressFromCoords();
-          loading.dismiss();
-      }).catch((error) => {
-          console.log('Error getting location', error);
-          loading.dismiss();
-      });
-      
-}
-
-nextStep(){
-  this.next = true;
-}
-
-previousStep(){
-  this.next = false;
-  this.loadMap();
-}
-
-async presentLoading(loading) {
-  return await loading.present();
-}
-
-async onSubmit(form: NgForm) {
-  console.log(form)
-  console.log(this.delivery)
-  if(form.invalid){
-    return
   }
-  const loading = await this.loadingController.create({
-    content: 'Please wait...'
-});
-  this.presentLoading(loading);
 
- 
-  this.userService.saveDelivery(this.delivery).then(data=>{
-    loading.dismiss();
-    this.presentToast("Servicio Toyomóvil solicitado correctamente.")
-  }).catch(errors=>{
-    errors.forEach(e => {
-      this.presentToast(e.message);
-  });  
-    loading.dismiss();
-  })
-
-}
-
- 
- 
+  
+  
 
 
 }

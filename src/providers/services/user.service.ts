@@ -6,6 +6,7 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 import { Platform, AlertController } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 import { Delivery } from '../../pages/delivery/delivery.model';
+import { Service } from '../../pages/booking/booking.model';
 
 
 const TOKEN_KEY = 'access_token';
@@ -179,7 +180,6 @@ export class UserService {
     
     console.log(this.user)
     return new Promise<any>((resolve, reject) => {
-      console.log("probando traer mis datos")
       let mutation = ` mutation {
         userData(username: "${username}") {
           user {
@@ -195,11 +195,9 @@ export class UserService {
         }
       }
       `
-      console.log(mutation)
       this.apollo.mutate({
         mutation: gql(mutation)
       }).subscribe(({ data }) => {
-        console.log(data)
         resolve(data.userData.user)
       }, (err) => {
         console.log(err)
@@ -211,4 +209,72 @@ export class UserService {
     });
       
   }
+
+
+  saveService(service:Service){
+    
+    
+    return new Promise<any>((resolve, reject) => {
+
+        let mutation = `
+        mutation {
+          createService(userId:${service.userId}, document:"${service.document}", 
+                brandId:${service.brandId}, modelId:${service.brandId}, year:${service.year},
+                carKm:${service.carKm}, licensePlate:"${service.licensePlate}", 
+                serviceTypeId:${service.serviceTypeId},
+                idType:"${service.idType}", workshopId:${service.workshopId}, 
+            date:"${service.date}", time:"${service.time}", comment:"${service.comment}") {
+            service {
+              id
+              user{
+                id
+                username
+                email
+                profile{
+                  phone
+                }
+              }
+              document
+              brand{
+                id
+                name
+              }
+              model{
+                id
+                name
+              }
+              year
+              carKm
+              idType
+              licensePlate
+              workshop{
+                id
+                name
+              }
+              idType
+              date
+              time
+              comment
+             
+            }
+          }
+        }
+        
+        `
+          console.log(mutation)
+      
+        this.apollo.mutate({
+          mutation: gql(mutation)
+        }).subscribe(({ data }) => {
+          resolve(data)
+        }, (err) => {
+          if (err.graphQLErrors) {        
+            reject(err.graphQLErrors)
+          }    
+        reject(err)
+        })
+      });
+        
+  }
+
 }
