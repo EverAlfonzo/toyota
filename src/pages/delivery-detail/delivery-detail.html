@@ -1,0 +1,78 @@
+
+
+<ion-header>
+  <ion-navbar>
+    <button button menuToggle icon-only>
+      <!-- <ion-icon class="my-menu"></ion-icon> -->
+    </button>
+    <ion-title>Toyomóvil</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content>
+    <ion-card >
+       
+        <ion-card-content>
+           
+            
+
+            <div class="map-wrapper" >
+                    <div id="map_center">
+                        <img src="../../assets/imgs/marker.png" />
+                    </div>
+                    <div #map id="map"></div>
+                    
+                </div>
+            
+     
+                    <ion-row>
+                        <ion-col>
+                            <ion-item>
+                                <ion-label floating style="color: black">  Número de Casa *</ion-label>
+                                <ion-input type="number"  
+                                           [(ngModel)]="delivery.number"  readonly name="number"></ion-input>
+                            </ion-item>
+                        </ion-col>
+                    </ion-row>
+
+                    <ion-row>
+                        <ion-col>
+                            <ion-item>
+                                <ion-label style="color: black" >  Fecha </ion-label>
+                                <ion-input type="date"  readonly
+                                           [(ngModel)]="delivery.date"  name="date"></ion-input>
+                            </ion-item>
+                        </ion-col>
+                    </ion-row>
+
+                    <ion-row>
+                        <ion-col>
+                            <ion-item>
+                                <ion-label style="color: black" >  Hora </ion-label>
+                                <ion-input type="time"  readonly
+                                           [(ngModel)]="delivery.time"  name="time"></ion-input>
+                            </ion-item>
+                        </ion-col>
+                    </ion-row>
+
+
+                    <ion-row>
+                        <ion-col >
+                            <ion-item>
+                                <ion-label  style="color: black" floating  >  Comentario</ion-label>
+                                <ion-textarea type="string"  readonly  *ngIf="delivery.comment"
+                                              [(ngModel)]="delivery.comment"  name="comment"></ion-textarea>
+                            </ion-item>
+                        </ion-col>
+                    </ion-row>
+
+            
+                </ion-card-content>
+
+            </ion-card>
+
+
+
+
+</ion-content>

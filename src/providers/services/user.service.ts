@@ -7,6 +7,8 @@ import { Platform, AlertController } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 import { Delivery } from '../../pages/delivery/delivery.model';
 import { Service } from '../../pages/booking/booking.model';
+import { Location } from '../../pages/login/address.model';
+
 
 
 const TOKEN_KEY = 'access_token';
@@ -343,10 +345,12 @@ export class UserService {
       let mutation = `mutation {
         myDeliveries(username: "${username}") {
           deliveries {
+            id
             user {
               id
               username
             }
+            number
             date
             time
             location
@@ -359,6 +363,7 @@ export class UserService {
       this.apollo.mutate({
         mutation: gql(mutation)
       }).subscribe(({ data }) => {
+        
         resolve(data.myDeliveries)
       }, (err) => {
         console.log(err)

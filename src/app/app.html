@@ -34,6 +34,14 @@
         </ion-item>
 
 
+        <ion-item item-left menuClose 
+        (click)="openPage('deliveries');toggleGroup(i)"
+        [ngClass]="{'active':isGroupShown(i)}">
+        <p class="side-title" style="margin-left: 15px !important"  item-left>
+          <ion-icon name="flash"></ion-icon> MIS PEDIDOS TOYOMÓVIL</p>
+        </ion-item>
+
+
        
 
 
