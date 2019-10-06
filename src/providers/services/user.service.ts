@@ -175,38 +175,40 @@ export class UserService {
   }
 
 
-  me(){
+  me(username){
+    
+    console.log(this.user)
     return new Promise<any>((resolve, reject) => {
       console.log("probando traer mis datos")
-      let query = ` query {
-        me {
-          id
-          username
-          email
-          firstName
-          profile {
-            phone
-            image
+      let mutation = ` mutation {
+        userData(username: "${username}") {
+          user {
+            id
+            username
+            email
+            firstName
+            profile {
+              phone
+              image
+            }
           }
         }
       }
       `
-      this.apollo
-        .watchQuery({
-          query:gql(query),
-          context:{'user':'user'}
-          
-        })
-        .valueChanges.subscribe((res:any) => {
-          console.log(res)
-          
-              resolve(res)
-              return res
-        },error=>{
-          console.log(error)
-          resolve(false)
-        });
-        
+      console.log(mutation)
+      this.apollo.mutate({
+        mutation: gql(mutation)
+      }).subscribe(({ data }) => {
+        console.log(data)
+        resolve(data.userData.user)
+      }, (err) => {
+        console.log(err)
+        if (err.graphQLErrors) {        
+          reject(err.graphQLErrors)
+        }    
+      reject(err)
+      })
     });
+      
   }
 }

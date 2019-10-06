@@ -8,6 +8,7 @@ import { Address } from '../login/address.model';
 import { Delivery } from './delivery.model';
 import { UserService } from '../../providers/services/user.service';
 import { NgForm } from '@angular/forms';
+import { Storage } from '@ionic/storage';
 
 declare var google;
 @IonicPage()
@@ -25,6 +26,7 @@ export class DeliveryPage {
 
 
   constructor(public navCtrl: NavController,
+              private storage: Storage,
               public userService: UserService,
               private geolocation: Geolocation,
               public popoverCtrl: PopoverController,
@@ -33,6 +35,14 @@ export class DeliveryPage {
               public navParams: NavParams) {
             
           this.delivery = new Delivery();
+
+          this.storage.get('user').then(user=>{
+            this.userService.me(user.username).then(me =>{
+              this.delivery.userId = me.id;
+            })
+          });
+      
+
   }
 
   async presentToast(message) {
@@ -78,7 +88,6 @@ async ngOnInit() {
   });
   await loading.present();
 
-      var posOptions = { enableHighAccuracy: true, timeout:5000 , maximumAge: 60000};
       this.geolocation.getCurrentPosition().then((resp) => {
           this.delivery.location.lattitude = resp.coords.latitude;
           this.delivery.location.longitude = resp.coords.longitude;
@@ -91,9 +100,6 @@ async ngOnInit() {
           loading.dismiss();
       });
       
-      this.userService.me().then(me=>{
-        console.log(me)
-      })
 }
 
 nextStep(){
