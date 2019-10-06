@@ -24,7 +24,7 @@ import { HAMMER_GESTURE_CONFIG } from '@angular/platform-browser';
 import { IonicStorageModule,Storage } from '@ionic/storage';
 import { UserService } from '../providers/services/user.service';
 import { JwtModule, JWT_OPTIONS } from '@auth0/angular-jwt';
- 
+
 
 export function jwtOptionsFactory(storage) {
   return {
@@ -63,7 +63,6 @@ var config = {
   ],
   imports: [
     BrowserModule,
-    
     IonicModule.forRoot(MyApp,config),
     Ionic2RatingModule, // Put ionic2-rating module here
     GraphQLModule,

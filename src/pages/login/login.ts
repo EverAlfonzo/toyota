@@ -21,7 +21,10 @@ export class LoginPage {
         private platform: Platform,
         private userService: UserService,
         public alertController: AlertController
-    ) { }
+    ) { 
+        this.user.email = "juanber2.0@gmail.com";
+        this.user.password ="juanber";
+    }
 
    
     presentToast(message) {
@@ -62,21 +65,13 @@ export class LoginPage {
             console.log(errors)
         });
 
-       // this.navCtrl.setRoot('MenuPage');
-        //this.goToUserPage();
+       
     }
 
-    goToUserPage(){
-        // let navigationExtras: NavigationExtras = {
-        //     state: {
-        //         user: this.user
-        //     }
-        // };
-    }
 
 
     async doSignup(){
-        console.log("que concha pasa aca")
+        
         const loading = await this.loadingController.create({
             content: 'Please wait...'
         });

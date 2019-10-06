@@ -5,6 +5,9 @@ import { Apollo } from 'apollo-angular';
 import { FormGroup, FormControl } from '@angular/forms';
 import { Geolocation } from '@ionic-native/geolocation';
 import { Address } from '../login/address.model';
+import { Delivery } from './delivery.model';
+import { UserService } from '../../providers/services/user.service';
+import { NgForm } from '@angular/forms';
 
 declare var google;
 @IonicPage()
@@ -16,20 +19,20 @@ declare var google;
 export class DeliveryPage {
   @ViewChild('map') mapElement: ElementRef;
   map: any;
-  address: Address;
+  delivery: Delivery;
   next = false;
   
 
 
   constructor(public navCtrl: NavController,
-              private apollo: Apollo,
+              public userService: UserService,
               private geolocation: Geolocation,
               public popoverCtrl: PopoverController,
               public toastController: ToastController,
               public loadingController: LoadingController,
               public navParams: NavParams) {
             
-          this.address = new Address();
+          this.delivery = new Delivery();
   }
 
   async presentToast(message) {
@@ -42,8 +45,8 @@ export class DeliveryPage {
 
 
   loadMap(){
-    let latLng = new google.maps.LatLng(this.address.location.lattitude,
-        this.address.location.longitude);
+    let latLng = new google.maps.LatLng(this.delivery.location.lattitude,
+        this.delivery.location.longitude);
     let mapOptions = {
         center: latLng,
         zoom: 15,
@@ -61,12 +64,13 @@ export class DeliveryPage {
 
     this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
     this.map.addListener('tilesloaded', () => {
-      this.address.location.lattitude = this.map.center.lat();
-      this.address.location.longitude = this.map.center.lng();
+      this.delivery.location.lattitude = this.map.center.lat();
+      this.delivery.location.longitude = this.map.center.lng();
       //this.getAddressFromCoords()
   });
    
 }
+
 
 async ngOnInit() {
   const loading = await this.loadingController.create({
@@ -76,8 +80,8 @@ async ngOnInit() {
 
       var posOptions = { enableHighAccuracy: true, timeout:5000 , maximumAge: 60000};
       this.geolocation.getCurrentPosition().then((resp) => {
-          this.address.location.lattitude = resp.coords.latitude;
-          this.address.location.longitude = resp.coords.longitude;
+          this.delivery.location.lattitude = resp.coords.latitude;
+          this.delivery.location.longitude = resp.coords.longitude;
 
           this.loadMap();
           //this.getAddressFromCoords();
@@ -86,7 +90,10 @@ async ngOnInit() {
           console.log('Error getting location', error);
           loading.dismiss();
       });
-  
+      
+      this.userService.me().then(me=>{
+        console.log(me)
+      })
 }
 
 nextStep(){
@@ -98,8 +105,32 @@ previousStep(){
   this.loadMap();
 }
 
-onSubmit() {
-  console.log(this.address)
+async presentLoading(loading) {
+  return await loading.present();
+}
+
+async onSubmit(form: NgForm) {
+  console.log(form)
+  console.log(this.delivery)
+  if(form.invalid){
+    return
+  }
+  const loading = await this.loadingController.create({
+    content: 'Please wait...'
+});
+  this.presentLoading(loading);
+
+ 
+  this.userService.saveDelivery(this.delivery).then(data=>{
+    loading.dismiss();
+    this.presentToast("Servicio Toyomóvil solicitado correctamente.")
+  }).catch(errors=>{
+    errors.forEach(e => {
+      this.presentToast(e.message);
+  });  
+    loading.dismiss();
+  })
+
 }
 
  

@@ -16,11 +16,13 @@ export class GraphQLModule {
 
   
   constructor(apollo: Apollo, httpLink: HttpLink) {
-    let develop = "http://localhost:8000/graphql"
+    let develop = "http://192.168.0.5:8000/graphql"
     apollo.create({
-      link: httpLink.create({ uri: develop}),
-      cache: new InMemoryCache() as any
+      link: httpLink.create({ uri: develop, withCredentials: true}),
+      cache: new InMemoryCache() as any,
+      
     });
+    
   }
 }
 

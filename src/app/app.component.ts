@@ -35,23 +35,20 @@ export class MyApp {
 
   initializeApp() {  
     
-    this.storage.get('user').then(value =>{
-      this.user = value;
-    });
+   
 
     this.platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
       //
-     // this.nav.setRoot('FindItemPage');
-      //this.statusBar.styleDefault();
+     
       this.statusBar.styleDefault();
         this.splashScreen.hide();
-        
+        this.storage.get('user').then(value =>{
+          this.user = value;
+        });
       this.statusBar.backgroundColorByName('#2d2c6e');
-      this.platform.ready().then(() => {
-        this.statusBar.styleDefault();
-        this.splashScreen.hide();
+      
 
         this.userService.authenticationState.subscribe(state => {
           console.log(state, "stateee")
@@ -63,7 +60,7 @@ export class MyApp {
         });
         
 
-      });
+     
 
       this.platform.registerBackButtonAction(() => {
         if (this.alertShown==false) {
@@ -71,6 +68,8 @@ export class MyApp {
         }
       }, 0)
       
+    } , error=>{
+      alert(JSON.stringify(error))
     });
   }
 

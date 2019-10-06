@@ -5,6 +5,7 @@ import { BehaviorSubject } from 'rxjs';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { Platform, AlertController } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
+import { Delivery } from '../../pages/delivery/delivery.model';
 
 
 const TOKEN_KEY = 'access_token';
@@ -111,9 +112,9 @@ export class UserService {
           reject(err)
       })
     });
-    }
-   
-    logout() {
+  }
+
+  logout() {
     this.storage.remove(TOKEN_KEY).then(() => {
       this.authenticationState.next(false);
     });
@@ -132,4 +133,80 @@ export class UserService {
     alert.present();
   }
 
+  
+
+  saveDelivery(delivery:Delivery){
+    
+    
+    return new Promise<any>((resolve, reject) => {
+
+        let mutation = `mutation {
+          createDelivery(userId:${delivery.userId}, number:${delivery.number},
+            comment:"${delivery.comment}", 
+            location:"${delivery.location.lattitude},${delivery.location.longitude}",
+          time:"${delivery.time}", date:"${delivery.date}") {
+            delivery{
+              user{
+                id
+                username
+              }
+              date
+              time
+              location
+              comment
+            }
+          }
+        }
+        `
+        console.log(mutation)
+      
+        this.apollo.mutate({
+          mutation: gql(mutation)
+        }).subscribe(({ data }) => {
+          resolve(true)
+        }, (err) => {
+          if (err.graphQLErrors) {        
+            reject(err.graphQLErrors)
+          }    
+        reject(err)
+        })
+      });
+        
+  }
+
+
+  me(){
+    return new Promise<any>((resolve, reject) => {
+      console.log("probando traer mis datos")
+      let query = ` query {
+        me {
+          id
+          username
+          email
+          firstName
+          profile {
+            phone
+            image
+          }
+        }
+      }
+      `
+      this.apollo
+        .watchQuery({
+          query:gql(query),
+          context:{'user':'user'}
+          
+        })
+        .valueChanges.subscribe((res:any) => {
+          console.log(res)
+          
+              resolve(res)
+              return res
+        },error=>{
+          console.log(error)
+          resolve(false)
+        });
+        
+    });
+  }
 }
