@@ -71,6 +71,16 @@
   </ion-item>
 
   <ion-item item-left menuClose 
+  navPush="SosPage"
+    (click)="openPage('home');toggleGroup(i)"
+    [ngClass]="{'active':isGroupShown(i)}">
+    <p class="side-title" style="margin-left: 15px !important"  item-left>
+      <ion-icon name="home"></ion-icon> NOSOTROS</p>
+      
+  </ion-item>
+
+
+  <ion-item item-left menuClose 
   (click)="openPage('talleres');toggleGroup(i)"
   [ngClass]="{'active':isGroupShown(i)}">
   <p class="side-title" style="margin-left: 15px !important"  item-left>

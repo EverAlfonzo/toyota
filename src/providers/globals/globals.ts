@@ -60,7 +60,8 @@ export const AppModules =  {
   booking: { code:'booking',title: 'Agendamiento', component: 'BookingPage'},
   delivery: { code:'delivery',title: 'Toyomovil', component: 'DeliveryPage'},
   services: { code:'services',title: 'Mis Servicios', component: 'ServicesPage'},
-  deliveries: { code:'deliveries',title: 'Mis Reservas Toyomovil', component: 'DeliveriesPage'}
+  deliveries: { code:'deliveries',title: 'Mis Reservas Toyomovil', component: 'DeliveriesPage'},
+  sos: { code:'sos',title: 'Sos', component: 'SosPage'}
 }
 
 export const DEFAULT_POSITION = {

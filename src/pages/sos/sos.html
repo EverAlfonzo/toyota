@@ -1,0 +1,60 @@
+
+
+<ion-header>
+  <ion-navbar>
+    <button button menuToggle icon-only>
+      <!-- <ion-icon class="my-menu"></ion-icon> -->
+    </button>
+    <ion-title>SOS</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content>
+    <ion-card >
+        
+        <ion-card-content>
+           <h4 text-center style="font-size: 40px"> Solicitá nuestro servicio estés donde estés.</h4>
+        
+            <h1 text-center margin-top>Seleccionar ubicación</h1>
+                <div class="map-wrapper">
+                    <div id="map_center">
+                        <img src="../../assets/imgs/marker.png" />
+                    </div>
+                    <div #map id="map"></div>
+                </div>
+       
+            
+                  
+
+                    <ion-row>
+                        <ion-col >
+                            <ion-item>
+                                <ion-label  style="color: black" floating  >  Describa su urgencia</ion-label>
+                                <ion-textarea type="string"  clearInput  
+                                              name="comment"></ion-textarea>
+                            </ion-item>
+                        </ion-col>
+                    </ion-row>
+
+            <ion-grid>
+                <ion-row>
+                  <ion-col>
+
+                            <button round ion-button [disabled]="!comment" (click)="onSubmit()"  shape="round" fill="outline">
+                                <ion-icon slot="start" name="check"></ion-icon>
+                                Solicitar
+                            </button>
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
+
+                </ion-card-content>
+
+            </ion-card>
+
+
+
+
+
+</ion-content>
