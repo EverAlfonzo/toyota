@@ -61,7 +61,8 @@ export const AppModules =  {
   delivery: { code:'delivery',title: 'Toyomovil', component: 'DeliveryPage'},
   services: { code:'services',title: 'Mis Servicios', component: 'ServicesPage'},
   deliveries: { code:'deliveries',title: 'Mis Reservas Toyomovil', component: 'DeliveriesPage'},
-  sos: { code:'sos',title: 'Sos', component: 'SosPage'}
+  sos: { code:'sos',title: 'Sos', component: 'SosPage'},
+  products: { code:'products',title: 'Products', component: 'ProductsPage'}
 }
 
 export const DEFAULT_POSITION = {

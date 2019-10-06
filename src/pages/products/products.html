@@ -1,0 +1,99 @@
+
+<ion-header>
+
+  <ion-navbar>
+    <button ion-button menuToggle icon-only>
+      <ion-icon class="my-menu"></ion-icon>
+    </button>
+    <ion-title>Shop</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only color="color3" class="shap_btn" (click)="changeStyle()" >
+        <ion-icon color="color2" class="my-list" *ngIf="grid_style==true"></ion-icon>
+        <ion-icon color="color2" class="my-grid" *ngIf="grid_style!=true"></ion-icon>
+      </button>
+      <button ion-button icon-only  >
+        <ion-icon name="ios-search"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>   
+<ion-content >
+
+  <div class="doctors_scroll" margin-bottom  *ngIf="false">
+    <h3 ion-text color="dark" margin-top text-center>Autos mas Buscados</h3>
+    <ion-scroll scrollX="true" scrollY="false" >
+      <div class="doctor_in_grid" margin-right *ngFor="let item of cars" >
+        <div class="imgBg" [ngStyle]="{'background-image':'url(' + item.img + ')'}">
+          <button ion-button icon-only class="mark_btn" color="color1" (click)="bookmark(item,$event)" [ngClass]="{'active':item.press_mark==true}">
+            <ion-icon name="md-cart"></ion-icon>
+          </button>
+        </div>
+        <div class="info_content">
+          <p  ion-text color="color2" >{{item.name}}</p>
+          <span ion-text color="black">{{item.price}}</span>
+          <!-- rating stars -->
+          <rating [(ngModel)]="rate" class="ratingGroup"
+                  readOnly="true"
+                  max="5"
+                  emptyStarIconName="ios-star-outline"
+                  starIconName="ios-star"
+                  nullable="false"
+                  >
+          </rating>
+
+
+        </div>
+      </div>
+    </ion-scroll>
+  </div>
+
+  <ion-grid  *ngIf="grid_style==true">
+    <ion-row>
+      <ion-col col-6 col-md-4 col-lg-3 col-xl-2 *ngFor="let item of cars"  >
+          <div class="doctor_in_grid">
+              <div class="imgBg" [ngStyle]="{'background-image':'url(' + item.img + ')'}">
+                <button ion-button icon-only class="mark_btn" color="color1" (click)="bookmark(item,$event)" [ngClass]="{'active':item.press_mark==true}">
+                  <ion-icon name="md-cart"></ion-icon>
+                </button>
+              </div>
+              <div class="info_content">
+                <p  ion-text color="color2" >{{item.name}}</p>
+                <!-- rating stars -->
+                <rating [(ngModel)]="rate" class="ratingGroup"
+                        readOnly="true" 
+                        max="5" 
+                        emptyStarIconName="ios-star-outline" 
+                        starIconName="ios-star" 
+                        nullable="false" 
+                        >
+                </rating>
+                <h4 ion-text class="has_icon" color="dark">
+                  <ion-icon name="ios-money" color="color2"></ion-icon>
+                  {{item.price}}
+                </h4>
+
+              </div>
+            </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+
+  <!-- List of cars -->
+  <ion-list class="list_cars" *ngIf="grid_style!=true" padding>
+    <ion-item *ngFor="let item of cars" padding  >
+      <ion-avatar item-left>
+        <img [src]="getURL(item.img)">
+
+      </ion-avatar>   
+      <p  ion-text color="color2" >{{item.name}}</p>
+
+
+      <div class="car_rating" item-right>
+        <span>{{item.price}}</span>
+        <!-- rating stars -->
+      </div>
+    </ion-item>
+  </ion-list>
+
+</ion-content>

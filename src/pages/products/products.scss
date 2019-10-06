@@ -1,0 +1,64 @@
+page-products {
+    .header{
+        .toolbar{
+            .title{
+                padding:0px ($toolbar-ios-height + $shap_btn_width) 0px $toolbar-ios-height;
+            }
+        }
+    }
+
+      h4{
+       @extend %title;
+       margin:$content-padding 0px!important;
+    }
+    .doctors_scroll{
+        h4{
+            margin-top:0px!important;
+        }
+        .scroll-x{
+            overflow: scroll;
+            white-space: nowrap;
+            height:225px;
+            .scroll-content{
+                padding:0px!important;
+            }
+            .scroll-zoom-wrapper{
+                height:100%;
+            }
+            .doctor_in_grid{
+                width: 172px;
+                display:inline-block;
+                &:last-of-type{
+                    margin-right:0px!important;
+                    margin-left:0px!important;
+                }
+            }
+        }
+    }
+  .ratingGroup{
+    display:flex;
+    justify-content: center;
+    .rating{
+        display:flex;
+        align-items:center;
+        margin:0px;
+        padding:0px;
+        li{
+            display:flex!important;
+            align-items:center;
+            padding:0px $content-padding/4!important;
+            .icon{
+                font-size:2rem;
+                color: color($colors,color5);
+            }
+        }
+    }
+}
+%title{
+    @include whiteNormal(20px,1);
+    font-weight:500;
+}
+
+
+}
+

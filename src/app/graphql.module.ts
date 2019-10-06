@@ -21,7 +21,7 @@ export class GraphQLModule {
 
     
     apollo.create({
-      link: httpLink.create({ uri: develop , withCredentials: true}),
+      link: httpLink.create({ uri: production , withCredentials: true}),
       cache: new InMemoryCache() as any,
     });
     
