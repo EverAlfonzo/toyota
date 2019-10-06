@@ -27,6 +27,7 @@ export class ServiceDetailPage {
   selected_brand = null;
   selected_model = null;
   selected_workshop = null;
+  loading = null;
 
 
   constructor(public navCtrl: NavController,
@@ -38,19 +39,30 @@ export class ServiceDetailPage {
               public loadingController: LoadingController,
               public navParams: NavParams) {
             
+        
+       
 
-        this.service = navParams.get('item');
-
-        this.serviceService.getForCreate().then(data=>{
-          console.log(data)
-            this.brands = data.brands;
-            this.workshops = data.talleres;
-            this.servicesTypes = data.servicesTypes;
-            
-        }).catch(err=>{
-           console.log(err)
-        });
+        
   }
+
+  ngOnInit(){
+    this.service = this.navParams.get('item');
+    console.log(this.navParams)
+    console.log(this.service)
+    
+  }
+
+  async presentLoading() {
+    this.loading = await this.loadingController.create({
+      content: '',
+      spinner: 'bubbles',
+      cssClass: 'primary',
+      duration:30000
+    });
+    await this.loading.present();
+    
+  }
+
 
 
 }

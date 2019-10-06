@@ -126,7 +126,7 @@
                             <ion-col>
                             <ion-item class="item-form">
                                 <ion-label  style="color: black">  Numero</ion-label>
-                                <ion-input type="text"  [(ngModel)]="service.licensePlate"  
+                                <ion-input type="text"    [(ngModel)]="service.licensePlate"  
                                 readonly name="licencePlate"></ion-input>
                             </ion-item>
                           </ion-col>
@@ -144,8 +144,8 @@
                             <ion-row>
                                 <ion-col>
                                 <ion-item class="item-form">
-                                    <ion-label  style="color: black">  Taller</ion-label>
-                                    <ion-input type="text"  [(ngModel)]="service.workshop.name"  
+                                    <ion-label  style="color: black">  Taller </ion-label>
+                                    <ion-input type="text" *ngIf="service.workshop"   [(ngModel)]="service.workshop.name"  
                                     readonly name="workshop"></ion-input>
                                 </ion-item>
                               </ion-col>
@@ -157,7 +157,7 @@
                                   <ion-col>
                                   <ion-item class="item-form">
                                       <ion-label  style="color: black">  Tipo de Servicio</ion-label>
-                                      <ion-input type="text"  [(ngModel)]="service.serviceType.name"  
+                                      <ion-input type="text" *ngIf="service.serviceType"  [(ngModel)]="service.serviceType.name"  
                                       readonly name="serviceType"></ion-input>
                                   </ion-item>
                                 </ion-col>
@@ -165,11 +165,6 @@
 
 
 
-                                  <ion-row>
-                                      <ion-col>
-                                          <ion-label text-center>Indicanos una Fecha para la visita</ion-label>
-                                      </ion-col>
-                                    </ion-row>
 
 
                               <ion-row>

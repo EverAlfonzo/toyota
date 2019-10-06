@@ -21,37 +21,7 @@
             </ion-col>
             <!-- next images must be equaled in width and height -->
           </ion-row>
-          <ion-row *ngIf="item.imagesQty==1">
-            <ion-col class="nomain-col" col-12 *ngFor="let image of item.images">
-              <div class="img_cover">
-                <img [src]="getURL(image)">
-              </div>
-            </ion-col>
-          </ion-row>
-          <ion-row *ngIf="item.imagesQty==2">
-            <ion-col class="nomain-col" col-6 *ngFor="let image of item.images">
-              <div class="img_cover">
-                <img [src]="getURL(image)">
-              </div>
-            </ion-col>
-          </ion-row>
-          <ion-row *ngIf="item.imagesQty==3">
-            <ion-col class="nomain-col" col-4 *ngFor="let image of item.images;">
-              <div class="">
-                <img [src]="getURL(image)">
-              </div>
-            </ion-col>
-          </ion-row>
-          <ion-row >
-            <ion-col class="nomain-col"  *ngFor="let image of item.images">
-              <div class="img_cover">
-                <img [src]="getURL(image)">
-              </div>
-            </ion-col>
-          </ion-row>
-
-        </ion-grid>
-      </div>
+       
       
       
       <ion-grid padding-top>
